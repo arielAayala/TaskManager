@@ -1,5 +1,6 @@
 "use client";
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import style from "./login.module.css";
 
 interface Input {
 	email: string;
@@ -22,24 +23,32 @@ function LoginForm() {
 		});
 	};
 
-	console.log(input);
-
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<form
+				className={style.loginForm}
+				onSubmit={handleSubmit}
+			>
 				<input
+					className={style.loginInput}
 					type="text"
 					name="email"
 					placeholder="Correo@devtics.com"
 					onChange={handleChange}
 				/>
 				<input
+					className={style.loginInput}
 					type="text"
 					name="password"
 					placeholder="Contraseña"
 					onChange={handleChange}
 				/>
-				<button type="submit">Ingresar</button>
+				<button
+					type="submit"
+					className={style.loginButton}
+				>
+					Ingresar
+				</button>
 			</form>
 		</>
 	);

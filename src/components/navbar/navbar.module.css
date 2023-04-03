@@ -2,17 +2,17 @@
 	background-color: rgb(255, 122, 34);
 	height: 100px;
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	align-items: center;
 	gap: 50px;
-	padding: 0.4em 1.5em 0.12em 1.5em;
-	margin-bottom: 2em;
+	padding: 0.4rem 1.5rem 0.12rem 1.5rem;
+	margin-bottom: 2rem;
 }
 
 .link {
 	text-decoration: none;
 	color: white;
-	font-size: 2em;
+	font-size: 2rem;
 }
 
 .image {
@@ -20,5 +20,5 @@
 }
 
 .ingresar {
-	margin: 0 2em 0 auto;
+	margin: 0 2rem 0 auto;
 }

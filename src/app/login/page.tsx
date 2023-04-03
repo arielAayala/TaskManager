@@ -5,9 +5,7 @@ import style from "./login.module.css";
 function Login() {
 	return (
 		<div className={style.container}>
-			<div className={style.container}>
-				<LoginForm></LoginForm>
-			</div>
+			<LoginForm></LoginForm>
 		</div>
 	);
 }

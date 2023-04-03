@@ -6,7 +6,7 @@ import Image from "next/image";
 
 function Navbar() {
 	return (
-		<div className={style.container}>
+		<header className={style.container}>
 			<Link
 				className={style.link}
 				href={"/"}
@@ -17,6 +17,7 @@ function Navbar() {
 					alt="logo"
 					width={100}
 					height={100}
+					priority={true}
 				></Image>
 			</Link>
 			<Link
@@ -37,7 +38,7 @@ function Navbar() {
 			>
 				Ingresar
 			</Link>
-		</div>
+		</header>
 	);
 }
 
