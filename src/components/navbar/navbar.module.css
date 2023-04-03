@@ -1,0 +1,24 @@
+.container {
+	background-color: rgb(255, 122, 34);
+	height: 100px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 50px;
+	padding: 0.4em 1.5em 0.12em 1.5em;
+	margin-bottom: 2em;
+}
+
+.link {
+	text-decoration: none;
+	color: white;
+	font-size: 2em;
+}
+
+.image {
+	border-radius: 50%;
+}
+
+.ingresar {
+	margin: 0 2em 0 auto;
+}
