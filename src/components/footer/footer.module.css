@@ -3,8 +3,10 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	background-color: rgb(255, 122, 34);
+	background-color: var(--colorPrincipal);
 	height: 50px;
 	position: relative;
 	bottom: 0;
+	color: var(--colorDetalles);
+	font-family: var(--letraSecundaria);
 }

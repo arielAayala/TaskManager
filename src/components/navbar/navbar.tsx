@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import style from "./navbar.module.css";
 import Logo from "../../../public/Logo.png";
 import Image from "next/image";
@@ -8,16 +8,14 @@ function Navbar() {
 	return (
 		<header className={style.container}>
 			<Link
-				className={style.link}
+				className={style.logo}
 				href={"/"}
 			>
 				<Image
-					className={style.image}
+					height={50}
+					width={50}
 					src={Logo}
 					alt="logo"
-					width={100}
-					height={100}
-					priority={true}
 				></Image>
 			</Link>
 			<Link

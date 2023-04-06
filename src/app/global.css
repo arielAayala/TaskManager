@@ -1,8 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;1,100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300&family=Lato:wght@700&display=swap");
+:root {
+	--colorPrincipal: rgb(2, 106, 167, 1);
+	--colorSecundario: rgb(23, 43, 77, 1);
+	--colorDetalles: rgb(255, 255, 255);
+	--letraPrincipal: "lato";
+	--letraSecundaria: "barlow";
+}
 
 body {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: "Barlow Condensed", sans-serif;
+	font-family: var(--letraPrincipal);
 }
