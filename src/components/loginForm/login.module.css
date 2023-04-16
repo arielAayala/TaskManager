@@ -1,32 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;1,100&display=swap");
+.loginTitle{
+	font-family: var(--LetraSecundaria);
+	display: block;
+	margin: 1rem 0 3rem 0;
+	text-align: center;
+	font-size: 1.1rem;
+}
+
 
 .loginInput {
 	display: block;
-	font-family: "Barlow Condensed", sans-serif;
+	font-family: var(--LetraPrincipal);
 	padding: 0.5rem;
-	border: 1px solid rgb(255, 122, 34);
+	border: 1px solid var(--colorPrincipal);
 	border-radius: 5px;
 	margin-bottom: 0.5rem;
 	width: 30em;
-	font-size: 1rem;
+	font-size: 0.85rem;
 	color: black;
 }
 
 .loginButton {
 	display: block;
-	font-family: "Barlow Condensed", sans-serif;
+	font-family: var(--LetraPrincipal);
 	padding: 0.5rem;
-	border: 1px solid rgb(255, 122, 34);
+	border: 1px solid var(--colorPrincipal);
+	background-color: transparent;
 	border-radius: 5px;
 	margin-bottom: 0.5rem;
-	font-size: 1.3rem;
+	font-size: 0.85rem;
 	color: black;
 	margin: auto;
-	margin-top: 5em;
+	margin-top: 4.5em;
+}
+
+.loginButton:hover{
+	background-color: var(--colorPrincipal);
 }
 
 .loginForm {
 	padding: 1rem;
-	background-color: rgb(255, 255, 226);
+	background-color: var(--colorDetalles);
 	border-radius: 5px;
+	border: 1px solid var(--colorPrincipal)
 }

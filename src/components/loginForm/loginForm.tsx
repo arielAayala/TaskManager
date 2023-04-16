@@ -29,6 +29,7 @@ function LoginForm() {
 				className={style.loginForm}
 				onSubmit={handleSubmit}
 			>
+				<h4 className={style.loginTitle}>Iniciar Sesión en DevTic's</h4>
 				<input
 					className={style.loginInput}
 					type="text"
