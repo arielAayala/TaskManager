@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React, { useState } from "react";
 import style from "./navbar.module.css";
 import Logo from "../../../public/Logo.png";
 import Image from "next/image";

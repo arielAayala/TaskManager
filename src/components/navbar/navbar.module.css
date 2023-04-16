@@ -11,7 +11,7 @@
 
 .link {
 	text-decoration: none;
-	color: white;
+	color: var(--colorDetalles);
 	font-size: 1.3rem;
 	font-family: var(--letraSecundaria);
 }
