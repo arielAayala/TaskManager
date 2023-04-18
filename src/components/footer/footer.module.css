@@ -1,4 +1,4 @@
-.footer {
+.container {
 	margin-top: 2em;
 	display: flex;
 	justify-content: space-around;
@@ -9,4 +9,10 @@
 	bottom: 0;
 	color: var(--colorDetalles);
 	font-family: var(--letraSecundaria);
+}
+.ubicacion{
+	cursor:pointer;
+	text-decoration: none;
+	color:var(--colorDetalles);
+	font-family: var(--letraSecundaria);	
 }
