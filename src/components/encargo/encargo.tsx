@@ -1,10 +1,10 @@
 import React from "react";
 import { Encargo } from "./encargo.models";
 
-function Encargo({props}:{props:Encargo}) {
+function Encargo(props:Encargo) {
 	return (
         <div>
-            <h1 className="style.encargo"> type </h1>
+            <h4 className="style.encargo"> {props.descripcionEncargo} </h4>
         </div>
     )
 }

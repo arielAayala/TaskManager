@@ -1,4 +1,4 @@
-let encargo = [{
+let lstencargo = [{
     "idEncargo":1,
     "idUsuarioCreador":1,
     "idIntitucion":1,
@@ -39,3 +39,4 @@ let encargo = [{
     "descripcionEncargo":"Hola Buenas",
     "fechaCreacionEncargo":Date,
 },]
+export {lstencargo}

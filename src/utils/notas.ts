@@ -20,3 +20,4 @@ let Notas = [{
     "fechaCreacionNota":Date,
     "comentarioNota":"Esto es una nota:2"
 },]
+export default Notas
