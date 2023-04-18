@@ -1,12 +1,13 @@
 .container {
 	background-color: var(--colorPrincipal);
-	height: 50px;
+	height: 70px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	gap: 30px;
 	padding: 0.5em 1em 0.5em 3.5em;
-	margin-bottom: 2rem;
+	margin: 0px 0px 0px 0px;
+
 }
 
 .link {
