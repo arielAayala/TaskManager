@@ -5,8 +5,9 @@
 	align-items: center;
 	background-color: var(--colorPrincipal);
 	height: 50px;
-	position: relative;
+	position: absolute;
 	bottom: 0;
+	width: 100%;
 	color: var(--colorDetalles);
 	font-family: var(--letraSecundaria);
 }
