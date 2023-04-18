@@ -10,7 +10,13 @@ function userProfile() {
 		router.push("/login");
 	}
 
-	return <h1>Perfil</h1>;
+	return (
+		<div>
+			<h1> Perfil	</h1>
+
+		</div>
+	
+	)
 }
 
 export default userProfile;
