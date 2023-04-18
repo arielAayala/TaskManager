@@ -7,35 +7,34 @@ import Image from "next/image";
 function Navbar() {
 	return (
 		<header className={style.container}>
-			<Link
-				className={style.logo}
-				href={"/"}
-			>
+			<a href="/" className={style.logo}>
 				<Image
 					height={50}
 					width={50}
 					src={Logo}
 					alt="logo"
 				></Image>
-			</Link>
-			<Link
-				className={style.link}
+			</a>
+			<ul>
+			<li><a 				
 				href={"/detalle"}
-			>
-				Detalle
-			</Link>
-			<Link
-				className={style.link}
-				href={"/tareas"}
-			>
-				Tareas
-			</Link>
-			<Link
-				className={style.link + " " + style.ingresar}
-				href={"/login"}
-			>
-				Ingresar
-			</Link>
+				className={style.link}>
+					Detalle 
+				</a>
+			</li>
+			<li><a	
+				href={"/tareas"}			
+				className={style.link}>
+					Tareas
+				</a>
+			</li>
+			<li><a 	
+				href={"/login"}			
+				className={style.link + " " + style.ingresar}>
+					Ingresar
+				</a>
+			</li>
+			</ul>
 		</header>
 	);
 }

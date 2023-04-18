@@ -3,4 +3,5 @@
     display: flex; /* Utilizamos flexbox para centrar verticalmente y horizontalmente */
     align-items: center; /* Centrar verticalmente */
     justify-content: center; /* Centrar horizontalmente */
+    position: fixed;
 }

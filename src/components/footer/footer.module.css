@@ -5,7 +5,7 @@
 	align-items: center;
 	background-color: var(--colorPrincipal);
 	height: 85px;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 	color: var(--colorDetalles);
@@ -16,4 +16,8 @@
 	text-decoration: none;
 	color:var(--colorDetalles);
 	font-family: var(--letraSecundaria);	
+}
+.footerElements{
+	color:var(--colorDetalles);
+	text-shadow: 2px 2px 4px black;
 }
