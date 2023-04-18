@@ -10,7 +10,7 @@ function Tareas() {
 		router.push("/login");
 	}
 
-	return <h1>Tareas</h1>;
+	return  <h1> Tareas </h1>;
 }
 
 export default Tareas;

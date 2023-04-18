@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar/navbar";
 import "./global.css";
-import Fotter from "@/components/footer/fotter";
+import Fotter from "@/components/footer/footer";
 
 export default function RootLayout({
 	children,

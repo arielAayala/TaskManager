@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./footer.module.css";
-function Footer() {
+function Fotter() {
 	return (
 		<footer className={style.footer}>
 			<div>Contacto</div>
@@ -10,4 +10,4 @@ function Footer() {
 	);
 }
 
-export default Footer;
+export default Fotter;
