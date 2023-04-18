@@ -1,5 +1,6 @@
 .container{
-    background-color:brown;
+    background-color:rgb(44, 242, 9);
     cursor:pointer;
+    width: 100vw;
 }
 

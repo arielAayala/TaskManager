@@ -6,7 +6,7 @@ let lstencargo = [{
     "idTipo":1,
     "idUsuarioResponsable":1,
     "fechaCierreEncargo":Date,
-    "descripcionEncargo":"Hola Buenas Tardes",
+    "descripcionEncargo":"Este es el primer encargo de prueba",
     "fechaCreacionEncargo":Date,
 },{ 
     "idEncargo":2,
@@ -16,7 +16,7 @@ let lstencargo = [{
     "idTipo":2,
     "idUsuarioResponsable":2,
     "fechaCierreEncargo":Date,
-    "descripcionEncargo":"Hola Buenas Noches",
+    "descripcionEncargo":"Este es el segundo encargo de prueba",
     "fechaCreacionEncargo":Date,
 },{
     "idEncargo":3,
@@ -26,7 +26,7 @@ let lstencargo = [{
     "idTipo":3,
     "idUsuarioResponsable":3,
     "fechaCierreEncargo":Date,
-    "descripcionEncargo":"Hola Buenos Dias",
+    "descripcionEncargo":"Este es el tercer encargo de prueba",
     "fechaCreacionEncargo":Date,
 },{
     "idEncargo":4,
@@ -36,7 +36,7 @@ let lstencargo = [{
     "idTipo":4,
     "idUsuarioResponsable":4,
     "fechaCierreEncargo":Date,
-    "descripcionEncargo":"Hola Buenas",
+    "descripcionEncargo":"Este es el cuarto encargo de prueba",
     "fechaCreacionEncargo":Date,
 },]
 export {lstencargo}
