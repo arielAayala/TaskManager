@@ -25,9 +25,8 @@
 }
 .container ul a:hover {
 	background: #ffff;
-	color: #2b1055;
+	color: var(--colorPrincipal);
 }
-
 .ingresar {
 	margin: 0 2rem 0 auto;
 }
@@ -43,4 +42,8 @@
 	margin: 0;
 	transform: scale(1.25);
 	transition: 0.5s;
+}
+.link{
+	color:var(--colorDetalles);
+	text-shadow: 2px 2px 4px black;
 }

@@ -12,19 +12,19 @@ function Navbar() {
 			</a>
 			<ul>
 				<li>
-					<a href={"/detalle"} className={style.link}>
+					<Link href={"/detalle"} className={style.link}>
 						Detalle
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href={"/tareas"} className={style.link}>
+					<Link href={"/tareas"} className={style.link}>
 						Tareas
-					</a>
+					</Link>
 				</li>
 				<li>
-					<a href={"/login"} className={style.link + " " + style.ingresar}>
+					<Link href={"/login"} className={style.link + " " + style.ingresar}>
 						Ingresar
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</header>

@@ -1,15 +1,58 @@
-.container {
-	margin-top: 2em;
+@import url('https://developers.google.com/fonts/docs/material_symbols?hl=es-419#variable_font_with_google_fonts');
+.container{
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	background-color: var(--colorPrincipal);
-	height: 85px;
+	min-height: 100vh;
+	background: #333;
+}
+.section{
+	position:flex;
 	width: 100%;
-	color: var(--colorDetalles);
-	font-family: var(--letraSecundaria);
-	position: absolute;
-	bottom: 0
+	background: var(--colorPrincipal);
+	padding: 20px 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+.section .social_Icon, .section .menu{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0;
+}
+.section .social_Icon li,.section .menu li{
+	list-style: none;
+}
+.section .social_Icon li a{
+	font-size: 2em;
+	color: #fff;
+	margin: 0 10px;
+	display: inline-block;
+	transition: 0.5s;
+}
+.section .menu li a{
+	font-size: 1.2em;
+	color: #fff;
+	margin: 0 10px;
+	display: inline-block;
+	transition: 0.5s;
+	text-decoration: none;
+	opacity: 0.75;
+}
+.section .social_Icon li a:hover{
+	transform: translateY(-10px)
+}
+.section .menu li a:hover{
+	opacity: 1;
+}
+.section p{
+	color: #fff;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	font-size: 1.1em;
 }
 .ubicacion{
 	cursor:pointer;
@@ -17,7 +60,7 @@
 	color:var(--colorDetalles);
 	font-family: var(--letraSecundaria);	
 }
-.footerElements{
+.link{
 	color:var(--colorDetalles);
-	text-shadow: 2px 2px 4px black;
+	text-shadow: 2px 2px 4px var(--colorPrincipal);
 }
