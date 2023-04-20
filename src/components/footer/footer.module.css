@@ -1,14 +1,11 @@
 @import url('https://developers.google.com/fonts/docs/material_symbols?hl=es-419#variable_font_with_google_fonts');
-.container{
-	display: flex;
-	min-height: 100vh;
-	background: #333;
-}
+
+
 .section{
-	position:flex;
+	position:absolute;
+	bottom: 0;
 	width: 100%;
-	background: var(--colorPrincipal);
-	padding: 20px 50px;
+	background: #3586ff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -53,6 +50,15 @@
 	margin-top: 15px;
 	margin-bottom: 10px;
 	font-size: 1.1em;
+}
+.section .wave{
+	position: absolute;
+	top: -100px;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background: #fff url(wave.png);
+	background-size: 1000px 100px;
 }
 .ubicacion{
 	cursor:pointer;

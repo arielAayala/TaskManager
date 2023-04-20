@@ -4,7 +4,6 @@ import Link from "next/link";
 
 function Footer() {
 	return (
-		<div className={style.container}>
 		<footer className={style.section}>
 			<ul className={style.social_Icon}>
 				<li><a href="#"></a></li>
@@ -35,7 +34,6 @@ function Footer() {
 			</ul>
 			<p> Todos los derechos reservados | 2023 | Lambda Team </p>
 		</footer>
-		</div>
 	);
 }
 

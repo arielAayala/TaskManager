@@ -12,7 +12,7 @@ body{
 	margin: 0;
 	box-sizing: border-box;
 	font-family: var(--letraPrincipal);
-  	background: linear-gradient(var(--colorPrincipal),var(--colorDetalles));
+  	background: linear-gradient(#3586ff, #0141a1);
 	background-repeat: no-repeat;
 }
 .containerChildrens{

@@ -25,7 +25,7 @@
 }
 .container ul a:hover {
 	background: #ffff;
-	color: var(--colorPrincipal);
+	color: var(--colorSecundario);
 }
 .ingresar {
 	margin: 0 2rem 0 auto;
