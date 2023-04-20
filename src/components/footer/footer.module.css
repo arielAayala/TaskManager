@@ -5,11 +5,11 @@
 	align-items: center;
 	background-color: var(--colorPrincipal);
 	height: 85px;
-	position: fixed;
-	bottom: 0;
 	width: 100%;
 	color: var(--colorDetalles);
 	font-family: var(--letraSecundaria);
+	position: absolute;
+	bottom: 0
 }
 .ubicacion{
 	cursor:pointer;

@@ -1,13 +1,9 @@
-
 .container {
-  	position: absolute; 
-  	top: 0;
-  	left: 0;
- 	width: 100%;
-	padding: 10px 10px;
+	width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	border-bottom: 0.5px solid var(--colorDetalles);
 }
 
 .container ul {
@@ -17,18 +13,18 @@
 	font-size: 1.3rem;
 	font-family: var(--letraSecundaria);
 }
-.container ul li{
+.container ul li {
 	list-style: none;
 	margin-left: 20px;
 }
-.container ul li a{
+.container ul li a {
 	text-decoration: none;
 	padding: 6px 15px;
 	color: #ffff;
 	border-radius: 20px;
 }
-.container ul a:hover{
-	background:#ffff;
+.container ul a:hover {
+	background: #ffff;
 	color: #2b1055;
 }
 
@@ -39,7 +35,7 @@
 .logo {
 	display: flex;
 	color: var(--colorDetalles);
-	padding-right: 1em;
+	margin-left: 1rem;
 }
 
 .logo :hover {
@@ -48,4 +44,3 @@
 	transform: scale(1.25);
 	transition: 0.5s;
 }
-

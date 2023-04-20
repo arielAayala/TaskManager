@@ -12,6 +12,9 @@ body {
 	margin: 0;
 	box-sizing: border-box;
 	font-family: var(--letraPrincipal);
-  min-height: 100vh;
-  background: linear-gradient(#032fa7,#7597de)
+  	background: linear-gradient(var(--colorPrincipal),var(--colorDetalles));
+	background-repeat: no-repeat;
+}
+.containerChildrens{
+	margin-bottom: 100px;
 }
