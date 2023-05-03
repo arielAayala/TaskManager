@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300&family=Lato:wght@700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons+Outlined');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons+Round');
-@import url('https://fonts.googleapis.com/css?family=Material+Icons+Sharp');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons+Outlined");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons+Round");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons+Sharp");
 
 :root {
 	--colorPrincipal: rgb(2, 106, 167, 1);
@@ -13,14 +13,13 @@
 	--letraPrincipal: "lato";
 	--letraSecundaria: "barlow";
 }
-body{
+body {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 	font-family: var(--letraPrincipal);
-  	background: linear-gradient(#3586ff, #0141a1);
-	background-repeat: no-repeat;
 }
-.containerChildrens{
-	margin-bottom: 100px;
+.containerChildrens {
+	padding: 1em;
+	margin: 4em 0 4em 0;
 }

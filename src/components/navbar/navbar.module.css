@@ -1,9 +1,9 @@
 .container {
-	width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 0.5px solid var(--colorDetalles);
+	background: linear-gradient(#3586ff, #0141a1);
 }
 
 .container ul {
@@ -12,6 +12,7 @@
 	align-items: center;
 	font-size: 1.3rem;
 	font-family: var(--letraSecundaria);
+	padding-right: 1.5em;
 }
 .container ul li {
 	list-style: none;
@@ -28,7 +29,7 @@
 	color: var(--colorSecundario);
 }
 .ingresar {
-	margin: 0 2rem 0 auto;
+	margin: 0 0 0 auto;
 }
 
 .logo {
@@ -43,7 +44,7 @@
 	transform: scale(1.25);
 	transition: 0.5s;
 }
-.link{
-	color:var(--colorDetalles);
+.link {
+	color: var(--colorDetalles);
 	text-shadow: 2px 2px 4px black;
 }
