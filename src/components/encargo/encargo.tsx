@@ -12,6 +12,7 @@ function Encargo(props: Encargo) {
 			<h4> {props.descripcionEncargo} </h4>
 			<h4> {props.idUsuarioCreador} </h4>
 			<h4> {props.idEncargo} </h4>
+			<Popup></Popup> ;
 		</div>
 	);
 }
