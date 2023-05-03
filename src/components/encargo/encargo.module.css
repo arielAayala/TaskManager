@@ -1,4 +1,11 @@
-.container{
-    background-color:rgb(116, 222, 236);
+.container {
+	background-color: transparent;
+	margin: 0;
+	cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid blue;
+	padding: 5px;
 }
-
+.container h4 {
+	margin: 0;
+}

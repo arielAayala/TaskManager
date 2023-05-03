@@ -18,6 +18,7 @@ function Tareas() {
 								idEncargo={i.idEncargo}
 								idUsuarioCreador={i.idUsuarioCreador}
 								descripcionEncargo={i.descripcionEncargo}
+								tituloEncargo={i.tituloEncargo}
 							></Encargo>
 						);
 					})}
