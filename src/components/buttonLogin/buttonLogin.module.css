@@ -1,0 +1,25 @@
+.container .link {
+	text-decoration: none;
+	padding: 6px 15px;
+	color: #ffff;
+	border-radius: 20px;
+	list-style: none;
+}
+.container .link :hover {
+	background: #ffff;
+	color: var(--colorSecundario);
+}
+
+.link {
+	color: var(--colorDetalles);
+	text-shadow: 2px 2px 4px black;
+}
+
+.fotoPsicopedagogo {
+	border-radius: 50%;
+	margin-left: 20px;
+}
+
+.linkFoto:hover {
+	background-color: transparent;
+}

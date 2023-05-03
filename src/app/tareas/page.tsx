@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { lstencargo } from "../../utils/encargo.ts";
+import { lstencargo } from "../../utils/encargo";
 import Encargo from "../../components/encargo/encargo";
 import style from "./tareas.models.css";
 

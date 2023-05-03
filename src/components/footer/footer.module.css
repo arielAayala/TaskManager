@@ -1,13 +1,13 @@
 @import url("https://developers.google.com/fonts/docs/material_symbols?hl=es-419#variable_font_with_google_fonts");
 
 .section {
-	width: 100%;
 	background: #3586ff;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 	flex-direction: column;
+	padding-top: 2em;
 }
 .section .social_Icon,
 .section .menu {

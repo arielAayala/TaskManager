@@ -10,7 +10,14 @@ interface Input {
 }
 
 function LoginForm() {
-	const { setIdUsuario } = useContextLogin();
+	const {
+		setIdUsuario,
+		setIdPsicopedagogo,
+		setDniPsicopedagogo,
+		setNombrePsicopedagogo,
+		setNacimientoPsicopedagogo,
+		setFotoPsicopedagogo,
+	} = useContextLogin();
 
 	const router = useRouter();
 
@@ -34,6 +41,11 @@ function LoginForm() {
 				if (data.length > 0) {
 					console.log("correctamente logueado");
 					setIdUsuario(data[0].idUsuario);
+					setIdPsicopedagogo(data[0].idPsicopedagogo);
+					setDniPsicopedagogo(data[0].dniPsicopedagogo);
+					setNombrePsicopedagogo(data[0].nombrePsicopedagogo);
+					setNacimientoPsicopedagogo(data[0].nacimientoPsicopedagogo);
+					setFotoPsicopedagogo(data[0].fotoPsicopedagogo);
 					router.push("/tareas");
 				} else {
 					console.log("error al ingresar la contraseña o email");

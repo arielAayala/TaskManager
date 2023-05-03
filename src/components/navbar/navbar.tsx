@@ -1,31 +1,42 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import style from "./navbar.module.css";
 import Logo from "../../../public/Logo.png";
 import Image from "next/image";
+import ButtonLogin from "../buttonLogin/buttonLogin";
 
 function Navbar() {
 	return (
 		<header className={style.container}>
-			<a href="/" className={style.logo}>
-				<Image height={50} width={50} src={Logo} alt="logo"></Image>
-			</a>
+			<Link
+				href="/"
+				className={style.logo}
+			>
+				<Image
+					height={50}
+					width={50}
+					src={Logo}
+					alt="logo"
+				></Image>
+			</Link>
 			<ul>
 				<li>
-					<Link href={"/detalle"} className={style.link}>
+					<Link
+						href={"/detalle"}
+						className={style.link}
+					>
 						Detalle
 					</Link>
 				</li>
 				<li>
-					<Link href={"/tareas"} className={style.link}>
+					<Link
+						href={"/tareas"}
+						className={style.link}
+					>
 						Tareas
 					</Link>
 				</li>
-				<li>
-					<Link href={"/login"} className={style.link + " " + style.ingresar}>
-						Ingresar
-					</Link>
-				</li>
+				<ButtonLogin></ButtonLogin>
 			</ul>
 		</header>
 	);

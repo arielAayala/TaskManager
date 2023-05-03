@@ -24,12 +24,9 @@
 	color: #ffff;
 	border-radius: 20px;
 }
-.container ul a:hover {
+.container ul li a:hover {
 	background: #ffff;
 	color: var(--colorSecundario);
-}
-.ingresar {
-	margin: 0 0 0 auto;
 }
 
 .logo {
