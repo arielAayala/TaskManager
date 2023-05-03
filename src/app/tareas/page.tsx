@@ -26,5 +26,4 @@ function Tareas() {
 		</div>
 	);
 }
-
 export default Tareas;
