@@ -7,7 +7,7 @@ import perfilDefault from "../../../public/perfilDefautl.png";
 import style from "./buttonLogin.module.css";
 
 export default function ButtonLogin() {
-	const { idUsuario, fotoPsicopedagogo } = useContextLogin();
+	const { idUsuario, idPsicopedagogo, fotoPsicopedagogo } = useContextLogin();
 
 	return (
 		<div className={style.container}>
@@ -23,7 +23,7 @@ export default function ButtonLogin() {
 			) : (
 				<Link
 					className={style.link}
-					href={"/"}
+					href={`/Profesionales/${idPsicopedagogo}`}
 				>
 					<Image
 						className={style.fotoPsicopedagogo}

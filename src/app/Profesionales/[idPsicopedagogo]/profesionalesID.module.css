@@ -1,0 +1,20 @@
+.container {
+	padding: 0 2em;
+}
+
+.header {
+	padding-bottom: 2em;
+	border-bottom: 1px solid var(--colorPrincipal);
+	display: flex;
+}
+
+.nameHeader {
+	width: 100%;
+	text-align: center;
+	align-items: center;
+	margin: auto;
+}
+
+.contacs {
+	padding-left: 2em;
+}

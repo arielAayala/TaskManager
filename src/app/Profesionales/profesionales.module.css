@@ -1,0 +1,28 @@
+.container {
+	padding: 0 2em;
+	color: black;
+}
+
+.rowCard {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+}
+
+.card {
+	padding: 0.5em;
+	margin: auto;
+	border: 1.5px solid var(--colorPrincipal);
+	height: min-content;
+	width: min-content;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.card .image {
+	border-radius: 10px;
+}
+
+.card .link {
+	text-decoration: none;
+}

@@ -3,6 +3,8 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import style from "./login.module.css";
 import { useContextLogin } from "@/context/contextLogin";
 import { useRouter } from "next/navigation";
+import login from "@/services/login";
+import { Usuario } from "@/Types/Usuario";
 
 interface Input {
 	email: string;
@@ -10,14 +12,8 @@ interface Input {
 }
 
 function LoginForm() {
-	const {
-		setIdUsuario,
-		setIdPsicopedagogo,
-		setDniPsicopedagogo,
-		setNombrePsicopedagogo,
-		setNacimientoPsicopedagogo,
-		setFotoPsicopedagogo,
-	} = useContextLogin();
+	const { setIdUsuario, setIdPsicopedagogo, setFotoPsicopedagogo } =
+		useContextLogin();
 
 	const router = useRouter();
 
@@ -26,31 +22,18 @@ function LoginForm() {
 		password: "",
 	});
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		fetch("http://localhost/managerBackend/Usuarios.php", {
-			method: "POST",
-			body: JSON.stringify({
-				correoUsuario: input.email,
-				contrasenaUsuario: input.password,
-			}),
-		})
-			.then((res) => res.json())
-			.catch((error) => console.error("error " + error))
-			.then((data) => {
-				if (data.length > 0) {
-					console.log("correctamente logueado");
-					setIdUsuario(data[0].idUsuario);
-					setIdPsicopedagogo(data[0].idPsicopedagogo);
-					setDniPsicopedagogo(data[0].dniPsicopedagogo);
-					setNombrePsicopedagogo(data[0].nombrePsicopedagogo);
-					setNacimientoPsicopedagogo(data[0].nacimientoPsicopedagogo);
-					setFotoPsicopedagogo(data[0].fotoPsicopedagogo);
-					router.push("/tareas");
-				} else {
-					console.log("error al ingresar la contraseña o email");
-				}
-			});
+		const loginData = login(input.email, input.password);
+		const data = await loginData;
+		if ((await data).length > 0) {
+			setIdUsuario(data[0].idUsuario);
+			setIdPsicopedagogo(data[0].idPsicopedagogo);
+			setFotoPsicopedagogo(data[0].fotoPsicopedagogo);
+			router.push("/tareas");
+		} else {
+			console.log("error");
+		}
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

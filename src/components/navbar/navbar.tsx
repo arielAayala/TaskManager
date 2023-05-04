@@ -22,10 +22,10 @@ function Navbar() {
 			<ul>
 				<li>
 					<Link
-						href={"/detalle"}
+						href={"/Profesionales"}
 						className={style.link}
 					>
-						Detalle
+						Profesionales
 					</Link>
 				</li>
 				<li>
