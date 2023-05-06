@@ -1,0 +1,9 @@
+.container {
+	padding: 0.5em 1em;
+	border: 2px solid var(--colorPrincipal);
+	color: var(--colorPrincipal);
+}
+.container h3 {
+	padding: 0.5em 1em;
+	color: black;
+}
