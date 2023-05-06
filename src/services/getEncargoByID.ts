@@ -1,6 +1,6 @@
 export default async function getEncargoByID(idEncargo: string) {
 	const res = await fetch(
-		`http://localhost/managerBackend/Encargos.php/?idEncargo=${idEncargo}`,
+		`http://192.168.1.10/managerBackend/Encargos.php/?idEncargo=${idEncargo}`,
 		{
 			cache: "no-store",
 		}

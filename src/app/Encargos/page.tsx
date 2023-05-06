@@ -20,17 +20,9 @@ async function Tareas() {
 								idEncargo={i.idEncargo}
 								tituloEncargo={i.tituloEncargo}
 								nombreEstado={i.nombreEstado}
-								nombreTipo={i.nombreTipo}
-								nombreInstitucion={i.nombreInstitucion}
-								idUsuarioCreador={i.idUsuarioCreador}
-								nombreCreador={i.nombreCreador}
-								fotoCreador={i.fotoCreador}
-								idUsuarioResponsable={i.idUsuarioResponsable}
 								nombreResponsable={i.nombreResponsable}
 								fotoResponsable={i.fotoResponsable}
 								fechaCreacionEncargo={i.fechaCreacionEncargo}
-								fechaCierreEncargo={i.fechaCierreEncargo}
-								descripcionEncargo={i.descripcionEncargo}
 							></Encargo>
 						);
 					})}
