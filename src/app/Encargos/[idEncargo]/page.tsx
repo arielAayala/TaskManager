@@ -22,7 +22,7 @@ export default async function EncargoID({ params: { idEncargo } }: Params) {
 			<h3>{encargo.nombreEstado}</h3>
 			<h3>creado el: {encargo.fechaCreacionEncargo}</h3>
 			<h3>
-				{encargo.fechaCierre
+				{encargo.fechaCierreEncargo
 					? `finalizado el: ${encargo.fechaCierreEncargo}`
 					: null}
 			</h3>

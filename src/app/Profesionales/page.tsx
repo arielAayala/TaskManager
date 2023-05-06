@@ -26,7 +26,7 @@ async function Profesionales() {
 								width={200}
 								height={200}
 								alt="fotografia"
-								src={/* i.fotoPsicopedagogo ? i.fotoPsicopedagogo : */ foto}
+								src={i.fotoPsicopedagogo ? i.fotoPsicopedagogo : foto}
 							></Image>
 							<h3>
 								{i.nombrePsicopedagogo.replace(
