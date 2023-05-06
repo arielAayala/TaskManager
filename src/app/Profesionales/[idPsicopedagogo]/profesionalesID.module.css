@@ -15,6 +15,23 @@
 	margin: auto;
 }
 
+.info {
+	padding-left: 2em;
+}
 .contacs {
 	padding-left: 2em;
+}
+
+.contactos {
+	border: 1px solid var(--colorPrincipal);
+	border-radius: 10px;
+	padding: 1.5em;
+	margin: 2.5em;
+}
+
+.descripcion {
+	border: 1px solid var(--colorPrincipal);
+	border-radius: 10px;
+	margin: 2.5em;
+	padding: 1.5em;
 }

@@ -1,4 +1,4 @@
-export interface Psicopedagogo {
+export interface IPsicopedagogo {
 	idPsicopedagogo: number;
 	nombrePsicopedagogo: string;
 	nacimientoPsicopedagogo: any;

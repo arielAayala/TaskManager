@@ -1,4 +1,4 @@
-import { Psicopedagogo } from "@/Types/Psicopedagogo";
+import { IPsicopedagogo } from "@/Types/IPsicopedagogo";
 import getPsicopedagogos from "@/services/getPsicopedagogos";
 import Image from "next/image";
 import React from "react";
@@ -9,7 +9,7 @@ import style from "./profesionales.module.css";
 async function Profesionales() {
 	const psicopedagogosData = getPsicopedagogos();
 
-	const psicopedagogos: Psicopedagogo[] = await psicopedagogosData;
+	const psicopedagogos: IPsicopedagogo[] = await psicopedagogosData;
 
 	return (
 		<div className={style.container}>
@@ -26,7 +26,7 @@ async function Profesionales() {
 								width={200}
 								height={200}
 								alt="fotografia"
-								src={i.fotoPsicopedagogo ? i.fotoPsicopedagogo : foto}
+								src={/* i.fotoPsicopedagogo ? i.fotoPsicopedagogo : */ foto}
 							></Image>
 							<h3>
 								{i.nombrePsicopedagogo.replace(
@@ -38,7 +38,7 @@ async function Profesionales() {
 								Especialidad:{" "}
 								{i.especialidadPsicopedagogo
 									? i.especialidadPsicopedagogo
-									: "No definidad"}
+									: "No definida"}
 							</h4>
 							<Link
 								className={style.link}

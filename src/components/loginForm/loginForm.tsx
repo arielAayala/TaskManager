@@ -4,7 +4,7 @@ import style from "./login.module.css";
 import { useContextLogin } from "@/context/contextLogin";
 import { useRouter } from "next/navigation";
 import login from "@/services/login";
-import { Usuario } from "@/Types/Usuario";
+import { IUsuario } from "@/Types/IUsuario";
 
 interface Input {
 	email: string;
@@ -30,7 +30,7 @@ function LoginForm() {
 			setIdUsuario(data[0].idUsuario);
 			setIdPsicopedagogo(data[0].idPsicopedagogo);
 			setFotoPsicopedagogo(data[0].fotoPsicopedagogo);
-			router.push("/tareas");
+			router.push("/Encargos");
 		} else {
 			console.log("error");
 		}

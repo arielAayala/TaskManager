@@ -1,11 +1,31 @@
 .container {
 	background-color: transparent;
-	margin: 0;
 	cursor: pointer;
 	border-radius: 5px;
-	border: 1px solid blue;
-	padding: 5px;
+	border: 1px solid var(--colorSecundario);
 }
-.container h4 {
+.container h3 {
+	display: flex;
+	font-size: 0.75em;
 	margin: 0;
+	padding: 0.5em 1em;
+	justify-content: space-between;
+}
+
+.container h4 {
+	font-size: 0.7em;
+	margin: 0.1em;
+}
+
+.infoEncargo {
+	padding: 0.5em 0 0.5em 2em;
+	margin: 0;
+}
+
+.curso {
+	background-color: green;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin: auto 0;
 }

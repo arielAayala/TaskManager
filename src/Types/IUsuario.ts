@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-export interface Usuario {
+export interface IUsuario {
 	idUsuario: number;
 	setIdUsuario: Dispatch<SetStateAction<number>>;
 	idPsicopedagogo: number;

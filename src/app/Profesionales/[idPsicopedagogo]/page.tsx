@@ -1,4 +1,4 @@
-import { Psicopedagogo } from "@/Types/Psicopedagogo";
+import { IPsicopedagogo } from "@/Types/IPsicopedagogo";
 import getPsicopedagogoById from "@/services/getPsicopedagogoById";
 import Image from "next/image";
 import React from "react";
@@ -29,13 +29,18 @@ export default async function ProfesionalID({
 					height={200}
 					alt="fotografia"
 					src={
-						psicopedagogo.fotoPsicopedagogo
+						/* psicopedagogo.fotoPsicopedagogo
 							? psicopedagogo.fotoPsicopedagogo
-							: foto
+							: */ foto
 					}
 				></Image>
 				<div className={style.nameHeader}>
-					<h3>{psicopedagogo.nombrePsicopedagogo}</h3>
+					<h3>
+						{psicopedagogo.nombrePsicopedagogo.replace(
+							/(^\w{1})|(\s+\w{1})/g,
+							(letter: any) => letter.toUpperCase()
+						)}
+					</h3>
 					<h4>
 						Especialidad:{" "}
 						{psicopedagogo.especialidadPsicopedagogo
@@ -47,17 +52,23 @@ export default async function ProfesionalID({
 			<div className={style.info}>
 				<h5>Edad: {psicopedagogo.edadPsicopedagogo}</h5>
 				<h5>Nacimiento: {psicopedagogo.nacimientoPsicopedagogo} </h5>
+				<h5>Descripcion:</h5>
+				<div className={style.descripcion}>
+					<h5>{psicopedagogo.descripcionPsicopedagogo}</h5>
+				</div>
 				<h5>Contactos: </h5>
-				{contactos.map((i: any) => {
-					return (
-						<h5
-							className={style.contacs}
-							key={i.idContacto}
-						>
-							{i.numeroContacto}
-						</h5>
-					);
-				})}
+				<div className={style.contactos}>
+					{contactos.map((i: any) => {
+						return (
+							<h5
+								className={style.contacs}
+								key={i.idContacto}
+							>
+								{i.numeroContacto}
+							</h5>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);

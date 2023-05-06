@@ -30,10 +30,10 @@ function Navbar() {
 				</li>
 				<li>
 					<Link
-						href={"/tareas"}
+						href={"/Encargos"}
 						className={style.link}
 					>
-						Tareas
+						Encargos
 					</Link>
 				</li>
 				<ButtonLogin></ButtonLogin>
