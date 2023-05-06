@@ -30,7 +30,7 @@ export default function ButtonLogin() {
 						alt="perfil"
 						width={50}
 						height={50}
-						src={/* fotoPsicopedagogo ? fotoPsicopedagogo :  */ perfilDefault}
+						src={fotoPsicopedagogo ? fotoPsicopedagogo : perfilDefault}
 					></Image>
 				</Link>
 			)}

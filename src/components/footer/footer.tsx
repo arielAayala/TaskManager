@@ -16,10 +16,7 @@ function Footer() {
 					</Link>
 				</li>
 				<li>
-					<Link
-						href="/"
-						className={styles.footerElements}
-					>
+					<Link href="/" className={styles.footerElements}>
 						{" "}
 						Devtics
 					</Link>

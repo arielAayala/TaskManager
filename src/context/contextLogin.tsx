@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useContext, createContext } from "react";
-import { Usuario } from "@/Types/IUsuario";
+import { IUsuario } from "@/Types/IUsuario";
 
-const ContextLogin = createContext<Usuario>({
+const ContextLogin = createContext<IUsuario>({
 	idUsuario: -1,
 	setIdUsuario: (): number => -1,
 	idPsicopedagogo: -1,

@@ -29,9 +29,9 @@ export default async function ProfesionalID({
 					height={200}
 					alt="fotografia"
 					src={
-						/* psicopedagogo.fotoPsicopedagogo
+						psicopedagogo.fotoPsicopedagogo
 							? psicopedagogo.fotoPsicopedagogo
-							: */ foto
+							: foto
 					}
 				></Image>
 				<div className={style.nameHeader}>
