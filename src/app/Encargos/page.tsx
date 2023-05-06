@@ -11,7 +11,7 @@ async function Tareas() {
 	return (
 		<div className={style.container}>
 			<div>
-				<h1> Tareas </h1>
+				<h1> Encargos </h1>
 				<div>
 					{encargos.map((i) => {
 						return (
