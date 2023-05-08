@@ -3,6 +3,11 @@
 	border: 2px solid var(--colorPrincipal);
 	color: var(--colorPrincipal);
 }
+.container h2 {
+	color: black;
+	padding: 0.5em 1em;
+	background-color: beige;
+}
 .container h3 {
 	padding: 0.5em 1em;
 	color: black;

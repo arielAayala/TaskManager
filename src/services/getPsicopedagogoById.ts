@@ -1,6 +1,6 @@
-export default async function getPsicopedagogoById(idPsicopedagogo: string) {
+export default async function getPsicopedagogoByID(idPsicopedagogo: string) {
 	const res = await fetch(
-		`http://192.168.1.10/managerBackend/psicopedagogos.php?idPsicopedagogo=${idPsicopedagogo}`,
+		`http://localhost/managerBackend/psicopedagogos.php?idPsicopedagogo=${idPsicopedagogo}`,
 		{ cache: "no-store" }
 	);
 	if (!res.ok) {

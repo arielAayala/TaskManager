@@ -1,5 +1,5 @@
 export default async function getEncargos() {
-	const res = await fetch("http://192.168.1.10/managerBackend/Encargos.php", {
+	const res = await fetch("http://localhost/managerBackend/Encargos.php", {
 		cache: "no-store",
 	});
 
