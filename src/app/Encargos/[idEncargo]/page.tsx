@@ -15,10 +15,7 @@ interface Params {
 export default async function EncargoID({ params: { idEncargo } }: Params) {
 	const encargoData: Promise<IEncargo[]> = getEncargoByID(idEncargo);
 	const anexoData: Promise<IAnexo[]> = getAnexoByIDEncargo(idEncargo);
-	const [encargo, anexos] = await Promise.all([
-		getEncargoByID,
-		getAnexoByIDEncargo,
-	]);
+	const [[encargo], anexos] = await Promise.all([encargoData, anexoData]);
 
 	return (
 		<div>
@@ -41,6 +38,21 @@ export default async function EncargoID({ params: { idEncargo } }: Params) {
 				</h1>
 				<h2>{encargo.descripcionEncargo}</h2>
 				<h3>Archivo del encargo</h3>
+				<div>
+					{anexos.map((i) => {
+						if (i.idNota == null) {
+							return (
+								<div key={i.idAnexo}>
+									<h3>
+										{i.idAnexo} - url: {i.urlAnexo}
+									</h3>
+								</div>
+							);
+						} else {
+							null;
+						}
+					})}
+				</div>
 				<h3>{encargo.nombreEstado}</h3>
 				<h3>Institucion: {encargo.nombreInstitucion}</h3>
 				<h3>Creado el: {encargo.fechaCreacionEncargo}</h3>
