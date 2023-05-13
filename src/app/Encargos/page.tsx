@@ -3,6 +3,7 @@ import Encargo from "../../components/encargo/encargo";
 import style from "./tareas.module.css";
 import getEncargos from "@/services/getEncargos";
 import { IEncargo } from "@/Types/IEncargo";
+import ButtonNewEncargo from "@/components/buttonNewEncargo/buttonNewEncargo";
 
 async function Tareas() {
 	const encargosData: Promise<IEncargo[]> = getEncargos();
@@ -12,6 +13,7 @@ async function Tareas() {
 		<div className={style.container}>
 			<div>
 				<h1> Encargos </h1>
+				<ButtonNewEncargo></ButtonNewEncargo>
 				<div>
 					{encargos.map((i) => {
 						return (
