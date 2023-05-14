@@ -4,7 +4,7 @@ import { useContextLogin } from "@/context/contextLogin";
 import getAllInstituciones from "@/services/getAllInstituciones";
 import getAllUser from "@/services/getAllUser";
 import insertNewEncargo from "@/services/insertNewEncargo";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 interface Institucion {
 	idInstitucion: number;
@@ -76,25 +76,21 @@ function FormNewEncargo() {
 		descripcionEncargo: "",
 	});
 
-	useState(async () => {
-		const getDataUsuarios = async () => {
-			const usuariosData: Promise<UsuarioResponsable[]> = getAllUser();
-			const usuarios = await usuariosData;
-			return usuarios;
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const usuariosData = await getAllUser();
+				setLstUsuarios(usuariosData);
+				const institucionesData = await getAllInstituciones();
+				setLstInstituciones(institucionesData);
+			} catch (error) {
+				setLstUsuarios([]);
+				setLstInstituciones([]);
+			}
 		};
-		const getDataInstituciones = async () => {
-			const institucionesData: Promise<Institucion[]> = getAllInstituciones();
-			const instituciones = await institucionesData;
-			return instituciones;
-		};
-		try {
-			setLstInstituciones(await getDataInstituciones());
-			setLstUsuarios(await getDataUsuarios());
-		} catch (error) {
-			setLstInstituciones([]);
-			setLstUsuarios([]);
-		}
 		console.log("carga");
+
+		fetchData();
 	}, []);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

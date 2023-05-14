@@ -1,21 +1,47 @@
+"use client";
 import { IEncargo } from "@/Types/IEncargo";
 import getEncargoByID from "@/services/getEncargoByID";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./idEncargo.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import backrow from "../../../../public/atras.png";
-import { IAnexo } from "@/Types/IAnexo";
+import { IEncargoAnexo } from "@/Types/IEncargoAnexo";
 import getAnexoByIDEncargo from "@/services/getAnexoByIDEncargo";
+import { useContextLogin } from "@/context/contextLogin";
+import { redirect } from "next/navigation";
 
 interface Params {
 	params: { idEncargo: string };
 }
 
-export default async function EncargoID({ params: { idEncargo } }: Params) {
-	const encargoData: Promise<IEncargo[]> = getEncargoByID(idEncargo);
-	const anexoData: Promise<IAnexo[]> = getAnexoByIDEncargo(idEncargo);
-	const [[encargo], anexos] = await Promise.all([encargoData, anexoData]);
+export default function EncargoID({ params: { idEncargo } }: Params) {
+	const { idUsuario } = useContextLogin();
+
+	if (idUsuario === -1) {
+		redirect("/login");
+	}
+
+	const [encargo, setEncargo] = useState<IEncargo>([]);
+	const [anexosEncargo, setAnexosEncargo] = useState<IEncargoAnexo[]>([]);
+
+	console.log(idEncargo);
+
+	useEffect(() => {
+		const fetch = async () => {
+			try {
+				const encargoData = await getEncargoByID(idEncargo);
+				const anexoData = await getAnexoByIDEncargo(idEncargo);
+				setEncargo(encargoData[0]);
+				setAnexosEncargo(anexoData);
+			} catch (error) {
+				setEncargo([]);
+				setAnexosEncargo([]);
+			}
+		};
+		fetch();
+		console.log("hola cargue");
+	}, []);
 
 	return (
 		<div>
@@ -39,18 +65,14 @@ export default async function EncargoID({ params: { idEncargo } }: Params) {
 				<h2>{encargo.descripcionEncargo}</h2>
 				<h3>Archivo del encargo</h3>
 				<div>
-					{anexos.map((i) => {
-						if (i.idNota == null) {
-							return (
-								<div key={i.idAnexo}>
-									<h3>
-										{i.idAnexo} - url: {i.urlAnexo}
-									</h3>
-								</div>
-							);
-						} else {
-							null;
-						}
+					{anexosEncargo.map((i) => {
+						return (
+							<div key={i.idEncargoAnexo}>
+								<h3>
+									{i.idEncargoAnexo} - url: {i.urlEncargoAnexo}
+								</h3>
+							</div>
+						);
 					})}
 				</div>
 				<h3>{encargo.nombreEstado}</h3>

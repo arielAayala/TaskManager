@@ -8,7 +8,7 @@ function ButtonNewEncargo() {
 	return (
 		<div>
 			<button onClick={() => setMostrar(!mostrar)}>
-				{mostrar ? "X" : "Crear Nuevo Encargo"}
+				{mostrar ? "❌" : "➕"}
 			</button>
 			{mostrar ? <FormNewEncargo></FormNewEncargo> : null}
 		</div>
