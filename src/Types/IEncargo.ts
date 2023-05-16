@@ -13,4 +13,7 @@ export interface IEncargo {
 	fechaCreacionEncargo: string;
 	fechaCierreEncargo: string;
 	descripcionEncargo: string;
+	idEstado: number;
+	idTipo: number;
+	idInstitucion: number;
 }

@@ -7,3 +7,8 @@ export interface IUsuario {
 	fotoPsicopedagogo: string;
 	setFotoPsicopedagogo: Dispatch<SetStateAction<string>>;
 }
+
+export interface IUsuarioResponsable {
+	idUsuario: number;
+	nombrePsicopedagogo: string;
+}

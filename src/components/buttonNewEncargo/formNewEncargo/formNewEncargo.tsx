@@ -1,20 +1,12 @@
 "use cliente";
 
+import { IInstitucion } from "@/Types/IInstitucion";
+import { IUsuarioResponsable } from "@/Types/IUsuario";
 import { useContextLogin } from "@/context/contextLogin";
 import getAllInstituciones from "@/services/getAllInstituciones";
 import getAllUser from "@/services/getAllUser";
 import insertNewEncargo from "@/services/insertNewEncargo";
 import React, { FormEvent, useEffect, useState } from "react";
-
-interface Institucion {
-	idInstitucion: number;
-	nombreInstitucion: string;
-}
-
-interface UsuarioResponsable {
-	idUsuario: number;
-	nombrePsicopedagogo: string;
-}
 
 const Tipos = [
 	{
@@ -65,8 +57,8 @@ const Estados = [
 function FormNewEncargo() {
 	const { idUsuario } = useContextLogin();
 
-	const [lstInstituciones, setLstInstituciones] = useState<Institucion[]>([]);
-	const [lstUsuarios, setLstUsuarios] = useState<UsuarioResponsable[]>([]);
+	const [lstInstituciones, setLstInstituciones] = useState<IInstitucion[]>([]);
+	const [lstUsuarios, setLstUsuarios] = useState<IUsuarioResponsable[]>([]);
 	const [input, setInput] = useState({
 		tituloEncargo: "",
 		idInstitucion: 0,
