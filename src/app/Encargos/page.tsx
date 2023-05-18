@@ -32,13 +32,13 @@ function Encargos() {
 			<div className={style.container}>
 				<div className={style.header}>
 					<h1> Encargos </h1>
-					<div>
-						<ButtonNewEncargo></ButtonNewEncargo>
-					</div>
-					<div>
-						{" "}
-						<ButtonFilter></ButtonFilter>{" "}
-					</div>
+				</div>
+				<div>
+					<ButtonNewEncargo></ButtonNewEncargo>
+				</div>
+				<div>
+					{" "}
+					<ButtonFilter></ButtonFilter>{" "}
 				</div>
 				<div>
 					{encargos.map((i) => {

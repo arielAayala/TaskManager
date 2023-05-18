@@ -7,6 +7,7 @@ import getAllInstituciones from "@/services/getAllInstituciones";
 import getAllUser from "@/services/getAllUser";
 import insertNewEncargo from "@/services/insertNewEncargo";
 import React, { FormEvent, useEffect, useState } from "react";
+import style from "./formNewEncargo.module.css";
 
 const Tipos = [
 	{
@@ -110,7 +111,7 @@ function FormNewEncargo() {
 	};
 
 	return (
-		<div>
+		<div className={style.container}>
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -119,7 +120,8 @@ function FormNewEncargo() {
 					required
 					onChange={handleChange}
 				/>
-				<label htmlFor="institucion">Institucion</label>
+				<br />
+				<label htmlFor="institucion">Institucion: </label>
 				<select
 					name="idInstitucion"
 					id="institucion"
@@ -141,12 +143,13 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="Tipo">Tipo</label>
+				<label htmlFor="Tipo">Tipo: </label>
 				<select
 					name="idTipo"
 					id="Tipo"
 					onChange={handleChange}
 				>
+					<br />
 					<option value={"Default"}>Seleccione una Tipo de encargo</option>
 					{Tipos.map((i) => {
 						return (
@@ -161,7 +164,7 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="Estado">Estado</label>
+				<label htmlFor="Estado">Estado: </label>
 				<select
 					name="idEstado"
 					id="Estado"
@@ -181,7 +184,7 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="UsuarioResponsable">UsuarioResponsable</label>
+				<label htmlFor="UsuarioResponsable">Usuario Responsable: </label>
 				<select
 					onChange={handleChange}
 					name="idUsuarioResponsable"
@@ -202,11 +205,13 @@ function FormNewEncargo() {
 					})}
 				</select>
 				<br />
+				<label htmlFor=""></label>
 				<textarea
 					onChange={handleChange}
 					name="descripcionEncargo"
 					placeholder="Escriba una pequeña descripcion del encargo"
 				></textarea>
+				<br />
 				<button type="submit">Crear nuevo Encargo</button>
 			</form>
 		</div>
