@@ -113,8 +113,10 @@ function FormNewEncargo() {
 	return (
 		<div className={style.container}>
 			<form onSubmit={handleSubmit}>
+				<label>Titulo: </label>
 				<input
 					type="text"
+					id="tituloEncargo"
 					name="tituloEncargo"
 					placeholder="Titulo para el encargo"
 					required
@@ -149,7 +151,6 @@ function FormNewEncargo() {
 					id="Tipo"
 					onChange={handleChange}
 				>
-					<br />
 					<option value={"Default"}>Seleccione una Tipo de encargo</option>
 					{Tipos.map((i) => {
 						return (
