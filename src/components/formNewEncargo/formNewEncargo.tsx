@@ -8,6 +8,9 @@ import getAllUser from "@/services/getAllUser";
 import insertNewEncargo from "@/services/insertNewEncargo";
 import React, { FormEvent, useEffect, useState } from "react";
 import style from "./formNewEncargo.module.css";
+import getAllMotivos from "@/services/getAllMotivos";
+import { IMotivo } from "@/Types/IMotivo";
+import { redirect } from "next/navigation";
 
 const Tipos = [
 	{
@@ -36,35 +39,26 @@ const Tipos = [
 	},
 ];
 
-const Estados = [
-	{
-		idEstado: 1,
-		nombreEstado: "Pendiente",
-	},
-	{
-		idEstado: 2,
-		nombreEstado: "En curso",
-	},
-	{
-		idEstado: 3,
-		nombreEstado: "Demorado",
-	},
-	{
-		idEstado: 4,
-		nombreEstado: "Terminado",
-	},
-];
-
 function FormNewEncargo() {
 	const { idUsuario } = useContextLogin();
 
+	if (idUsuario <= 0) {
+		redirect("/login");
+	}
+
+	const [alert, setAlert] = useState({
+		hide: true,
+		message: "",
+	});
+
 	const [lstInstituciones, setLstInstituciones] = useState<IInstitucion[]>([]);
+	const [lstMotivos, setLstMotivos] = useState<IMotivo[]>([]);
 	const [lstUsuarios, setLstUsuarios] = useState<IUsuarioResponsable[]>([]);
 	const [input, setInput] = useState({
 		tituloEncargo: "",
 		idInstitucion: 0,
 		idTipo: 0,
-		idEstado: 0,
+		idMotivo: 0,
 		idUsuarioResponsable: 0,
 		descripcionEncargo: "",
 	});
@@ -76,9 +70,12 @@ function FormNewEncargo() {
 				setLstUsuarios(usuariosData);
 				const institucionesData = await getAllInstituciones();
 				setLstInstituciones(institucionesData);
+				const motivoData = await getAllMotivos();
+				setLstMotivos(motivoData);
 			} catch (error) {
 				setLstUsuarios([]);
 				setLstInstituciones([]);
+				setLstMotivos([]);
 			}
 		};
 		console.log("carga");
@@ -88,21 +85,30 @@ function FormNewEncargo() {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log(input);
-		const resData = insertNewEncargo(
-			input.tituloEncargo,
-			idUsuario,
-			input.idInstitucion,
-			input.idEstado,
-			input.idTipo,
-			input.idUsuarioResponsable,
-			input.descripcionEncargo
-		);
-		const res = await resData;
-		if (res === 200) {
-			console.log("cargo :)");
-		} else {
-			("no cargo :(");
+		try {
+			const resData = insertNewEncargo(
+				input.tituloEncargo,
+				idUsuario,
+				input.idInstitucion,
+				input.idMotivo,
+				input.idTipo,
+				input.idUsuarioResponsable,
+				input.descripcionEncargo
+			);
+			const res = await resData;
+			if (res === 200) {
+				console.log("cargo :)");
+				setAlert({
+					hide: false,
+					message: "Se agrego correctamente el encargo",
+				});
+			}
+		} catch (error: any) {
+			console.log("no cargo :(");
+			setAlert({
+				hide: false,
+				message: error.message,
+			});
 		}
 	};
 
@@ -112,26 +118,32 @@ function FormNewEncargo() {
 
 	return (
 		<div className={style.container}>
-			<form onSubmit={handleSubmit}>
-				<label>Titulo: </label>
+			<form
+				className={style.form}
+				onSubmit={handleSubmit}
+			>
+				<label>Titulo </label>
 				<input
 					type="text"
-					id="tituloEncargo"
 					name="tituloEncargo"
-					placeholder="Titulo para el encargo"
+					placeholder="Escriba un titulo para el encargo"
 					required
 					onChange={handleChange}
 				/>
 				<br />
-				<label htmlFor="institucion">Institucion: </label>
+				<label htmlFor="institucion">Institución </label>
 				<select
 					name="idInstitucion"
-					id="institucion"
 					required
-					defaultValue={"default"}
+					defaultValue={"Default"}
 					onChange={handleChange}
 				>
-					<option value={"Default"}>Seleccione una institucion</option>
+					<option
+						disabled
+						value={"Default"}
+					>
+						Seleccione una institucion
+					</option>
 					{lstInstituciones.map((i) => {
 						return (
 							<option
@@ -145,13 +157,19 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="Tipo">Tipo: </label>
+				<label htmlFor="Tipo">Tipo </label>
 				<select
 					name="idTipo"
-					id="Tipo"
+					required
 					onChange={handleChange}
+					defaultValue={"Default"}
 				>
-					<option value={"Default"}>Seleccione una Tipo de encargo</option>
+					<option
+						disabled
+						value={"Default"}
+					>
+						Seleccione una Tipo de encargo
+					</option>
 					{Tipos.map((i) => {
 						return (
 							<option
@@ -165,33 +183,42 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="Estado">Estado: </label>
+				<label htmlFor="Motivo">Motivo</label>
 				<select
-					name="idEstado"
-					id="Estado"
+					name="idMotivo"
 					onChange={handleChange}
+					defaultValue={"Default"}
 				>
-					<option value={"Default"}>Seleccione un Estado del encargo</option>
-					{Estados.map((i) => {
+					<option
+						disabled
+						value={"Default"}
+					>
+						Seleccione un Motivo del encargo
+					</option>
+					{lstMotivos.map((i) => {
 						return (
 							<option
-								key={i.idEstado}
-								value={i.idEstado}
+								key={i.idMotivo}
+								value={i.idMotivo}
 							>
-								{i.nombreEstado}
+								{i.nombreMotivo}
 							</option>
 						);
 					})}
 				</select>
 				<br />
 
-				<label htmlFor="UsuarioResponsable">Usuario Responsable: </label>
+				<label htmlFor="UsuarioResponsable">Usuario Responsable </label>
 				<select
 					onChange={handleChange}
 					name="idUsuarioResponsable"
-					id="UsuarioResponsable"
+					required
+					defaultValue={"Default"}
 				>
-					<option value={"Default"}>
+					<option
+						value={"Default"}
+						disabled
+					>
 						Seleccione un Usuario Responsable del encargo
 					</option>
 					{lstUsuarios.map((i) => {
@@ -206,14 +233,21 @@ function FormNewEncargo() {
 					})}
 				</select>
 				<br />
-				<label htmlFor=""></label>
+				<label htmlFor="descripcionEncargo">Descripción</label>
 				<textarea
 					onChange={handleChange}
 					name="descripcionEncargo"
-					placeholder="Escriba una pequeña descripcion del encargo"
+					required
+					placeholder="Escriba una descripcion del encargo"
 				></textarea>
 				<br />
-				<button type="submit">Crear nuevo Encargo</button>
+				<div
+					className={style.alert}
+					style={alert.hide ? { display: "none" } : { display: "contents" }}
+				>
+					{alert.message}
+				</div>
+				<button type="submit">Crear Nuevo Encargo</button>
 			</form>
 		</div>
 	);

@@ -4,10 +4,10 @@ import Encargo from "../../components/encargo/encargo";
 import style from "./tareas.module.css";
 import getEncargos from "@/services/getEncargos";
 import { IEncargo } from "@/Types/IEncargo";
-import ButtonNewEncargo from "@/components/buttonNewEncargo/buttonNewEncargo";
 import { useContextLogin } from "@/context/contextLogin";
 import { redirect } from "next/navigation";
 import ButtonFilter from "@/components/buttonFilter/ButtonFilter";
+import Link from "next/link";
 
 function Encargos() {
 	const { idUsuario } = useContextLogin();
@@ -32,13 +32,10 @@ function Encargos() {
 			<div className={style.container}>
 				<div className={style.header}>
 					<h1> Encargos </h1>
+					<Link href={"/NuevoEncargo"}>Agregar Encargo</Link>
 				</div>
 				<div>
-					<ButtonNewEncargo></ButtonNewEncargo>
-				</div>
-				<div>
-					{" "}
-					<ButtonFilter></ButtonFilter>{" "}
+					<ButtonFilter></ButtonFilter>
 				</div>
 				<div>
 					{encargos.map((i) => {
