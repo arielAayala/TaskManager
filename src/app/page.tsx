@@ -4,10 +4,6 @@ import Image from "next/image";
 import image1 from "../../public/SeTic_Logo.jpg";
 import Testimonials from "@/components/testimonials/testimonials";
 
-export const metadata = {
-	title: "SeTIC",
-};
-
 export default function Home() {
 	return (
 		<div className={styles.container}>

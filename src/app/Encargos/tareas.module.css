@@ -11,3 +11,18 @@
 .header h1 {
 	width: 100%;
 }
+
+.encargos {
+	padding-top: 1.5em;
+}
+
+.btnAgregar {
+	text-decoration: none;
+	color: white;
+	background-color: var(--colorPrincipal);
+	padding: 0.6em 0em;
+	text-align: center;
+	bottom: 6em;
+	right: 3em;
+	border-radius: 10px;
+}
