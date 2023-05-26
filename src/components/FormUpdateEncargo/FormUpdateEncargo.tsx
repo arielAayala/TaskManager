@@ -3,6 +3,7 @@
 import { IInstitucion } from "@/Types/IInstitucion";
 import getAllInstituciones from "@/services/getAllInstituciones";
 import updateEncargo from "@/services/updateEncargo";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
 
 interface Props {
@@ -78,6 +79,8 @@ function FormUpdateEncargo({
 		idTipo: idTipo,
 	});
 
+	const router = useRouter();
+
 	const [instituciones, setInstituciones] = useState<IInstitucion[]>([]);
 
 	const [hideForm, setHideForm] = useState(false);
@@ -110,6 +113,7 @@ function FormUpdateEncargo({
 		const res = resData;
 		if (res === 200) {
 			console.log("actualizo :)");
+			router.refresh();
 		} else {
 			console.log("no actualizo :(");
 		}

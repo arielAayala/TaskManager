@@ -7,6 +7,15 @@ export default async function updateEncargo(
 	idTipo: string,
 	idUsuarioResponsable: string
 ) {
+	console.log({
+		tituloEncargo: tituloEncargo,
+		descripcionEncargo: descripcionEncargo,
+		idInstitucion: parseInt(idInstitucion),
+		idEstado: parseInt(idEstado),
+		idTipo: parseInt(idTipo),
+		idUsuarioResponsable: parseInt(idUsuarioResponsable),
+	});
+
 	const res = await fetch(
 		`http://localhost/managerBackend/Encargos.php?idEncargo=${idEncargo}`,
 		{

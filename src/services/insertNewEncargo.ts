@@ -1,35 +1,19 @@
 export default async function insertNewEncargo(
 	tituloEncargo: string,
-	idUsuarioCreador: number,
-	idInstitucion: number,
-	idEstado: number,
-	idTipo: number,
-	idUsuarioResponsable: number | null,
+	idUsuarioCreador: string,
+	idInstitucion: string,
+	idMotivo: string,
+	idTipo: string,
+	idUsuarioResponsable: string | null,
 	descripcionEncargo: string
 ) {
 	const fechaCreacionEncargo: string = new Date().toISOString().split("T")[0];
 
-	if (
-		!tituloEncargo ||
-		!idUsuarioCreador ||
-		!idInstitucion ||
-		!idEstado ||
-		!idTipo
-	) {
+	if (!tituloEncargo || !idUsuarioCreador || !idInstitucion || !idTipo) {
 		throw new Error(
-			"La debe rellenar todas los datos necesarios para crear un encargo nuevo"
+			"se debe rellenar todas los datos necesarios para crear un encargo nuevo"
 		);
 	}
-	console.log({
-		tituloEncargo: tituloEncargo,
-		idUsuarioCreador: idUsuarioCreador,
-		idInstitucion: idInstitucion,
-		idEstado: idEstado,
-		idTipo: idTipo,
-		idUsuarioResponsable: idUsuarioResponsable,
-		descripcionEncargo: descripcionEncargo,
-		fechaCreacionEncargo: fechaCreacionEncargo,
-	});
 
 	const res = await fetch("http://localhost/managerBackend/Encargos.php", {
 		method: "POST",
@@ -37,11 +21,10 @@ export default async function insertNewEncargo(
 			tituloEncargo: tituloEncargo,
 			idUsuarioCreador: idUsuarioCreador,
 			idInstitucion: parseInt(idInstitucion),
-			idEstado: parseInt(idEstado),
+			idMotivo: parseInt(idMotivo),
 			idTipo: parseInt(idTipo),
 			idUsuarioResponsable: parseInt(idUsuarioResponsable),
 			descripcionEncargo: descripcionEncargo,
-			fechaCreacionEncargo: fechaCreacionEncargo,
 		}),
 	});
 	if (!res.ok) {

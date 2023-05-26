@@ -4,14 +4,22 @@ import Encargo from "../../components/encargo/encargo";
 import style from "./tareas.module.css";
 import getEncargos from "@/services/getEncargos";
 import { IEncargo } from "@/Types/IEncargo";
-import ButtonNewEncargo from "@/components/buttonNewEncargo/buttonNewEncargo";
 import { useContextLogin } from "@/context/contextLogin";
 import { redirect } from "next/navigation";
 import ButtonFilter from "@/components/buttonFilter/ButtonFilter";
+import Link from "next/link";
 
 function Encargos() {
 	const { idUsuario } = useContextLogin();
 	const [encargos, setEncargos] = useState<IEncargo[]>([]);
+
+	const [filtros, setFiltros] = useState({
+		idEstado: 0,
+		idTipo: 0,
+		idMotivo: 0,
+		idUsuarioResponsable: 0,
+		idInstitucion: 0,
+	});
 
 	useEffect(() => {
 		const getData = async () => {
@@ -32,36 +40,64 @@ function Encargos() {
 			<div className={style.container}>
 				<div className={style.header}>
 					<h1> Encargos </h1>
+					<Link
+						className={style.btnAgregar}
+						href={"/NuevoEncargo"}
+					>
+						Agregar Encargo
+					</Link>
 				</div>
-				<div>
-					<ButtonNewEncargo></ButtonNewEncargo>
-				</div>
-				<div>
-					{" "}
-					<ButtonFilter></ButtonFilter>{" "}
-				</div>
-				<div>
-					{encargos.map((i) => {
-						return (
-							<Encargo
-								key={i.idEncargo}
-								idEncargo={i.idEncargo}
-								tituloEncargo={i.tituloEncargo}
-								nombreEstado={i.nombreEstado}
-								nombreResponsable={i.nombreResponsable}
-								fotoResponsable={i.fotoResponsable}
-								fechaCreacionEncargo={i.fechaCreacionEncargo}
-								nombreTipo={""}
-								idUsuarioCreador={0}
-								nombreCreador={""}
-								fotoCreador={""}
-								idUsuarioResponsable={0}
-								nombreInstitucion={""}
-								fechaCierreEncargo={""}
-								descripcionEncargo={""}
-							></Encargo>
-						);
-					})}
+
+				<ButtonFilter
+					filtros={filtros}
+					setFiltros={setFiltros}
+				></ButtonFilter>
+
+				<div className={style.encargos}>
+					{encargos
+						.filter((i) => {
+							if (filtros.idEstado == i.idEstado || filtros.idEstado == 0) {
+								if (filtros.idTipo == i.idTipo || filtros.idTipo == 0) {
+									if (
+										filtros.idUsuarioResponsable == i.idUsuarioResponsable ||
+										filtros.idUsuarioResponsable == 0
+									) {
+										if (
+											filtros.idMotivo == i.idMotivo ||
+											filtros.idMotivo == 0
+										) {
+											if (
+												filtros.idInstitucion == i.idInstitucion ||
+												filtros.idInstitucion == 0
+											) {
+												return i;
+											}
+										}
+									}
+								}
+							}
+						})
+						.map((i) => {
+							return (
+								<Encargo
+									key={i.idEncargo}
+									idEncargo={i.idEncargo}
+									tituloEncargo={i.tituloEncargo}
+									nombreEstado={i.nombreEstado}
+									nombreResponsable={i.nombreResponsable}
+									fotoResponsable={i.fotoResponsable}
+									fechaCreacionEncargo={i.fechaCreacionEncargo}
+									nombreTipo={""}
+									idUsuarioCreador={0}
+									nombreCreador={""}
+									fotoCreador={""}
+									idUsuarioResponsable={0}
+									nombreInstitucion={""}
+									fechaCierreEncargo={""}
+									descripcionEncargo={""}
+								></Encargo>
+							);
+						})}
 				</div>
 			</div>
 		);

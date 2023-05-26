@@ -1,0 +1,51 @@
+.container {
+	text-align: center;
+	padding: 0 2em;
+}
+
+.alert {
+	padding: 2em;
+}
+
+.form {
+	display: grid;
+}
+
+.form label {
+	justify-self: self-start;
+	margin-bottom: 0.5em;
+	font-size: 1em;
+}
+
+.form input {
+	border: 1px solid var(--colorPrincipal);
+	border-radius: 4px;
+	padding: 0.5em;
+}
+
+.form select {
+	border: 1px solid var(--colorPrincipal);
+	padding: 0.5em;
+	border-radius: 4px;
+}
+
+.form textarea {
+	border: 1px solid var(--colorPrincipal);
+	padding: 0.5em;
+	border-radius: 4px;
+}
+
+.form button {
+	width: max-content;
+	justify-self: center;
+	border: 1px solid var(--colorPrincipal);
+	padding: 0.5em;
+	border-radius: 4px;
+	background-color: transparent;
+	transition: 0.5s;
+}
+
+.form button:hover {
+	background-color: var(--colorPrincipal);
+	color: var(--colorDetalles);
+}

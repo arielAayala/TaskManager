@@ -2,6 +2,11 @@ import "./global.css";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
 import ProviderContextLogin from "@/context/contextLogin";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Devtics",
+};
 
 export default function RootLayout({
 	children,

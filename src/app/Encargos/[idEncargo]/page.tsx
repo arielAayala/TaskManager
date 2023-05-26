@@ -11,6 +11,10 @@ import getAnexoByIDEncargo from "@/services/getAnexoByIDEncargo";
 import { useContextLogin } from "@/context/contextLogin";
 import { redirect } from "next/navigation";
 import FormUpdateEncargo from "@/components/FormUpdateEncargo/FormUpdateEncargo";
+import newResponsable from "@/services/newResponsable";
+import { IUsuario } from "@/Types/IUsuario";
+import getAllUser from "@/services/getAllUser";
+import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 
 interface Params {
 	params: { idEncargo: string };
@@ -25,19 +29,36 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 
 	const [encargo, setEncargo] = useState<IEncargo>([]);
 	const [anexosEncargo, setAnexosEncargo] = useState<IEncargoAnexo[]>([]);
+	const [usuario, setUsuario] = useState<IUsuario[]>([]);
+	const [notas, setNotas] = useState<[]>([]);
 
-	console.log(idEncargo);
+	const handleNewUserResponsable = async () => {
+		try {
+			const resData = await newResponsable(idEncargo, idUsuario);
+			if (resData == 200) {
+				console.log("se registro el nuevo responsable");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
 		const fetch = async () => {
 			try {
-				const encargoData = await getEncargoByID(idEncargo);
+				const [encargoData] = await getEncargoByID(idEncargo);
 				const anexoData = await getAnexoByIDEncargo(idEncargo);
-				setEncargo(encargoData[0]);
+				const usuarioData = await getAllUser();
+				const notasData = await getAllNotasByIdEncargo(idEncargo);
+				setEncargo(encargoData);
 				setAnexosEncargo(anexoData);
+				setUsuario(usuarioData);
+				setNotas(notasData);
 			} catch (error) {
 				setEncargo([]);
 				setAnexosEncargo([]);
+				setUsuario([]);
+				setNotas([]);
 			}
 		};
 		fetch();
@@ -98,6 +119,48 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						? `finalizado el: ${encargo.fechaCierreEncargo}`
 						: null}
 				</h3>
+				{encargo.idUsuarioResponsable ? null : (
+					<button onClick={handleNewUserResponsable}>Asignarse Encargo</button>
+				)}
+				{encargo.idUsuarioResponsable == idUsuario ? (
+					<div>
+						<div>
+							Delegar a:
+							<select name="idUsuarioResponsable">
+								{usuario.map((i) => {
+									if (i.idUsuario == idUsuario) {
+										return null;
+									}
+									return (
+										<option
+											value={i.idUsuario}
+											key={i.idUsuario}
+										>
+											{i.nombrePsicopedagogo}
+										</option>
+									);
+								})}
+							</select>
+							<button>Confirmar </button>
+						</div>
+						<div>
+							<button>Agregar nota</button>
+						</div>
+					</div>
+				) : null}
+			</div>
+
+			<div>
+				<h3>Notas del encargo:</h3>
+				{notas.map((i) => {
+					return (
+						<div key={i.idNota}>
+							<h4>{i.comentarioNota}</h4>
+							<h4>fecha: {i.fechaCreacionNota}</h4>
+							<h4>Publicado por: {i.idUsuarioCreador} </h4>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
