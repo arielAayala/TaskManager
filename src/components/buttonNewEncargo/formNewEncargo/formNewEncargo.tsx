@@ -112,7 +112,9 @@ function FormNewEncargo() {
 
 	return (
 		<div className={style.container}>
+			<h3>Nuevo Encargo: </h3>
 			<form onSubmit={handleSubmit}>
+				<label>Titulo: </label>
 				<input
 					type="text"
 					name="tituloEncargo"
@@ -183,7 +185,6 @@ function FormNewEncargo() {
 					})}
 				</select>
 				<br />
-
 				<label htmlFor="UsuarioResponsable">Usuario Responsable: </label>
 				<select
 					onChange={handleChange}
@@ -205,7 +206,8 @@ function FormNewEncargo() {
 					})}
 				</select>
 				<br />
-				<label htmlFor=""></label>
+				<label>Descripcion del encargo: </label>
+				<br />
 				<textarea
 					onChange={handleChange}
 					name="descripcionEncargo"
