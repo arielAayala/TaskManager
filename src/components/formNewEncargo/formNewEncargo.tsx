@@ -11,6 +11,7 @@ import style from "./formNewEncargo.module.css";
 import getAllMotivos from "@/services/getAllMotivos";
 import { IMotivo } from "@/Types/IMotivo";
 import { redirect } from "next/navigation";
+import insertNewEncargoAnexo from "@/services/insertNewEncargoAnexo";
 
 const Tipos = [
 	{
@@ -59,9 +60,11 @@ function FormNewEncargo() {
 		idInstitucion: 0,
 		idTipo: 0,
 		idMotivo: 0,
-		idUsuarioResponsable: 0,
+		idUsuarioResponsable: null,
 		descripcionEncargo: "",
 	});
+
+	const [file, setFile] = useState<FileList>();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -92,11 +95,16 @@ function FormNewEncargo() {
 				input.idInstitucion,
 				input.idMotivo,
 				input.idTipo,
-				input.idUsuarioResponsable,
+				input.idUsuarioResponsable == 0 ? null : input.idUsuarioResponsable,
 				input.descripcionEncargo
 			);
 			const res = await resData;
-			if (res === 200) {
+			console.log("esperando");
+
+			if (res.idEncargo) {
+				if (file?.length) {
+					handleSubmitFile(res.idEncargo);
+				}
 				console.log("cargo :)");
 				setAlert({
 					hide: false,
@@ -114,6 +122,17 @@ function FormNewEncargo() {
 
 	const handleChange = (e: any) => {
 		setInput({ ...input, [e.target.name]: e.target.value });
+	};
+
+	const handleChangeFile = (e: any) => {
+		setFile(e.target.files);
+	};
+
+	const handleSubmitFile = async (idEncargo: number) => {
+		for (let i = 0; i < file.length; i++) {
+			const res = await insertNewEncargoAnexo(idEncargo, file[i]);
+			console.log(res);
+		}
 	};
 
 	return (
@@ -212,13 +231,9 @@ function FormNewEncargo() {
 				<select
 					onChange={handleChange}
 					name="idUsuarioResponsable"
-					required
-					defaultValue={"Default"}
+					defaultValue={0}
 				>
-					<option
-						value={"Default"}
-						disabled
-					>
+					<option value={0}>
 						Seleccione un Usuario Responsable del encargo
 					</option>
 					{lstUsuarios.map((i) => {
@@ -241,6 +256,14 @@ function FormNewEncargo() {
 					placeholder="Escriba una descripcion del encargo"
 				></textarea>
 				<br />
+				<label htmlFor="EncargosAnexos">Anexos</label>
+				<input
+					type="file"
+					name="EncargosAnexos"
+					multiple
+					onChange={handleChangeFile}
+				/>
+
 				<div
 					className={style.alert}
 					style={alert.hide ? { display: "none" } : { display: "contents" }}

@@ -1,15 +1,19 @@
 .container {
 	background-color: transparent;
-	cursor: pointer;
 	border-radius: 5px;
 	border: 1px solid var(--colorSecundario);
 }
-.container h3 {
+.header {
 	display: flex;
-	font-size: 0.75em;
+	font-size: 0.8em;
 	margin: 0;
-	padding: 0.5em 1em;
-	justify-content: space-between;
+	padding: 0.75em 2em;
+}
+
+.header h3 {
+	width: 100%;
+	padding: 0;
+	margin: 0;
 }
 
 .container h4 {
@@ -17,14 +21,63 @@
 	margin: 0.1em;
 }
 
-.infoEncargo {
-	padding: 0.5em 0 0.5em 2em;
-	margin: 0;
-}
-
 .estado {
-	width: 10px;
-	height: 10px;
+	width: 15px;
+	height: 15px;
 	border-radius: 50%;
 	margin: auto 0;
+}
+
+.descripcion {
+	width: 100%;
+	font-size: 1.15em;
+}
+
+.infoEncargo {
+	padding: 0.5em 2em 0.5em 2em;
+	margin: 0;
+	display: flex;
+}
+
+.containerEncargo {
+	padding: 1em;
+}
+
+.fotoResponsable {
+	width: 75px;
+	height: 75px;
+	border-radius: 25%;
+}
+
+.responsable {
+	text-align: center;
+	margin-right: 1em;
+}
+
+.responsable h4 {
+	font-size: 0.9em;
+}
+
+.containerDetalles {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.detalles {
+	font-size: 0.7em;
+	text-decoration: none;
+	border: 1px solid var(--colorPrincipal);
+	padding: 0.2em 1em;
+	border-radius: 10px;
+	color: black;
+	background-color: transparent;
+	transition: 0.2s;
+	width: max-content;
+	height: max-content;
+	align-self: flex-end;
+}
+
+.detalles:hover {
+	background-color: var(--colorPrincipal);
+	color: white;
 }

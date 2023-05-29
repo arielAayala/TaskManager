@@ -16,4 +16,6 @@ export interface IEncargo {
 	idEstado: number;
 	idTipo: number;
 	idInstitucion: number;
+	nombreMotivo: string;
+	idMotivo: number;
 }

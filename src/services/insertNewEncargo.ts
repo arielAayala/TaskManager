@@ -7,8 +7,6 @@ export default async function insertNewEncargo(
 	idUsuarioResponsable: string | null,
 	descripcionEncargo: string
 ) {
-	const fechaCreacionEncargo: string = new Date().toISOString().split("T")[0];
-
 	if (!tituloEncargo || !idUsuarioCreador || !idInstitucion || !idTipo) {
 		throw new Error(
 			"se debe rellenar todas los datos necesarios para crear un encargo nuevo"
@@ -23,12 +21,12 @@ export default async function insertNewEncargo(
 			idInstitucion: parseInt(idInstitucion),
 			idMotivo: parseInt(idMotivo),
 			idTipo: parseInt(idTipo),
-			idUsuarioResponsable: parseInt(idUsuarioResponsable),
+			idUsuarioResponsable: idUsuarioResponsable,
 			descripcionEncargo: descripcionEncargo,
 		}),
 	});
 	if (!res.ok) {
 		throw new Error("Error al crear el encargo");
 	}
-	return res.status;
+	return res.json();
 }

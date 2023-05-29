@@ -51,7 +51,7 @@ function ButtonFilter({ filtros, setFiltros }: Props) {
 	const [lstMotivos, setLstMotivos] = useState<IMotivo[]>([]);
 	const [lstUsuarios, setLstUsuarios] = useState<IUsuarioResponsable[]>([]);
 
-	const [hide, setHide] = useState(false);
+	const [hide, setHide] = useState(true);
 
 	const handleClick = () => {
 		setHide(!hide);
@@ -150,6 +150,7 @@ function ButtonFilter({ filtros, setFiltros }: Props) {
 										</option>
 									);
 								})}
+								<option value={"null"}>Sin motivos</option>
 							</select>
 						</div>
 						<div className={style.box}>
@@ -190,6 +191,7 @@ function ButtonFilter({ filtros, setFiltros }: Props) {
 										</option>
 									);
 								})}
+								<option value={"null"}>Sin Responsable</option>
 							</select>
 						</div>
 					</div>

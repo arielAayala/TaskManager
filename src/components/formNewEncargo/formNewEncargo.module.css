@@ -43,6 +43,7 @@
 	border-radius: 4px;
 	background-color: transparent;
 	transition: 0.5s;
+	margin-top: 3em;
 }
 
 .form button:hover {

@@ -15,6 +15,8 @@ import newResponsable from "@/services/newResponsable";
 import { IUsuario } from "@/Types/IUsuario";
 import getAllUser from "@/services/getAllUser";
 import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
+import Notas from "@/components/notas/notas";
+import { INotas } from "@/Types/INotas";
 
 interface Params {
 	params: { idEncargo: string };
@@ -30,7 +32,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 	const [encargo, setEncargo] = useState<IEncargo>([]);
 	const [anexosEncargo, setAnexosEncargo] = useState<IEncargoAnexo[]>([]);
 	const [usuario, setUsuario] = useState<IUsuario[]>([]);
-	const [notas, setNotas] = useState<[]>([]);
+	const [notas, setNotas] = useState<INotas[]>([]);
 
 	const handleNewUserResponsable = async () => {
 		try {
@@ -154,11 +156,13 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				<h3>Notas del encargo:</h3>
 				{notas.map((i) => {
 					return (
-						<div key={i.idNota}>
-							<h4>{i.comentarioNota}</h4>
-							<h4>fecha: {i.fechaCreacionNota}</h4>
-							<h4>Publicado por: {i.idUsuarioCreador} </h4>
-						</div>
+						<Notas
+							key={i.idNota}
+							idNota={i.idNota}
+							fechaCreacionNota={i.fechaCreacionNota}
+							comentarioNota={i.comentarioNota}
+							idUsuarioCreador={i.idUsuarioCreador}
+						></Notas>
 					);
 				})}
 			</div>

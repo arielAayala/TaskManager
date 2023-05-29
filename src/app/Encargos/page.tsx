@@ -60,10 +60,13 @@ function Encargos() {
 								if (filtros.idTipo == i.idTipo || filtros.idTipo == 0) {
 									if (
 										filtros.idUsuarioResponsable == i.idUsuarioResponsable ||
+										(filtros.idUsuarioResponsable == "null" &&
+											i.idUsuarioResponsable == null) ||
 										filtros.idUsuarioResponsable == 0
 									) {
 										if (
 											filtros.idMotivo == i.idMotivo ||
+											(filtros.idMotivo == "null" && i.idMotivo == null) ||
 											filtros.idMotivo == 0
 										) {
 											if (
@@ -87,14 +90,17 @@ function Encargos() {
 									nombreResponsable={i.nombreResponsable}
 									fotoResponsable={i.fotoResponsable}
 									fechaCreacionEncargo={i.fechaCreacionEncargo}
-									nombreTipo={""}
-									idUsuarioCreador={0}
-									nombreCreador={""}
-									fotoCreador={""}
-									idUsuarioResponsable={0}
-									nombreInstitucion={""}
-									fechaCierreEncargo={""}
-									descripcionEncargo={""}
+									nombreTipo={i.nombreTipo}
+									idUsuarioCreador={i.idUsuarioCreador}
+									nombreCreador={i.nombreCreador}
+									fotoCreador={i.fotoCreador}
+									idUsuarioResponsable={i.idUsuarioResponsable}
+									nombreInstitucion={i.nombreInstitucion}
+									fechaCierreEncargo={i.fechaCierreEncargo}
+									descripcionEncargo={i.descripcionEncargo}
+									idEstado={i.idEstado}
+									idTipo={i.idTipo}
+									idInstitucion={i.idInstitucion}
 								></Encargo>
 							);
 						})}

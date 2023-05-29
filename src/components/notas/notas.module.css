@@ -1,0 +1,7 @@
+.container {
+	margin: 1em;
+	border-radius: 10px;
+	border: 1px solid var(--colorPrincipal);
+	padding: 1em;
+	font-size: 1em;
+}
