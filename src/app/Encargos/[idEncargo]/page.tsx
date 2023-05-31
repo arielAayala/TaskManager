@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import backrow from "../../../../public/atras.png";
 import { IEncargoAnexo } from "@/Types/IEncargoAnexo";
-import getAnexoByIDEncargo from "@/services/getAnexoByIDEncargo";
+import getEncargosAnexosByIDEncargo from "@/services/getEncargosAnexoByIDEncargo";
 import { useContextLogin } from "@/context/contextLogin";
 import { redirect } from "next/navigation";
 import FormUpdateEncargo from "@/components/FormUpdateEncargo/FormUpdateEncargo";
@@ -17,6 +17,7 @@ import getAllUser from "@/services/getAllUser";
 import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 import Notas from "@/components/notas/notas";
 import { INotas } from "@/Types/INotas";
+import Anexos from "@/components/anexos/anexos";
 
 interface Params {
 	params: { idEncargo: string };
@@ -30,7 +31,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 	}
 
 	const [encargo, setEncargo] = useState<IEncargo>([]);
-	const [anexosEncargo, setAnexosEncargo] = useState<IEncargoAnexo[]>([]);
+	const [encargoAnexos, setEncargoAnexos] = useState<IEncargoAnexo[]>([]);
 	const [usuario, setUsuario] = useState<IUsuario[]>([]);
 	const [notas, setNotas] = useState<INotas[]>([]);
 
@@ -49,16 +50,16 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 		const fetch = async () => {
 			try {
 				const [encargoData] = await getEncargoByID(idEncargo);
-				const anexoData = await getAnexoByIDEncargo(idEncargo);
+				const anexoData = await getEncargosAnexosByIDEncargo(idEncargo);
 				const usuarioData = await getAllUser();
 				const notasData = await getAllNotasByIdEncargo(idEncargo);
 				setEncargo(encargoData);
-				setAnexosEncargo(anexoData);
+				setEncargoAnexos(anexoData);
 				setUsuario(usuarioData);
 				setNotas(notasData);
 			} catch (error) {
 				setEncargo([]);
-				setAnexosEncargo([]);
+				setEncargoAnexos([]);
 				setUsuario([]);
 				setNotas([]);
 			}
@@ -98,18 +99,22 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 					></FormUpdateEncargo>
 				) : null}
 				<h2>{encargo.descripcionEncargo}</h2>
-				<h3>Archivo del encargo:</h3>
-				<div>
-					{anexosEncargo.map((i) => {
-						return (
-							<div key={i.idEncargoAnexo}>
-								<h3>
-									{i.idEncargoAnexo} - url: {i.urlEncargoAnexo}
-								</h3>
-							</div>
-						);
-					})}
-				</div>
+				{encargoAnexos.length > 0 ? (
+					<div>
+						<h3>Archivo del encargo:</h3>
+						<div className={style.encargoAnexos}>
+							{encargoAnexos.map((i) => {
+								return (
+									<Anexos
+										key={i.idEncargoAnexo}
+										urlEncargoAnexo={i.urlEncargoAnexo}
+										nombreEncargoAnexo={i.nombreEncargoAnexo}
+									></Anexos>
+								);
+							})}
+						</div>
+					</div>
+				) : null}
 				<h3>Estado del Encargo: {encargo.nombreEstado}</h3>
 				<h3>Tipo del Encargo: {encargo.nombreTipo}</h3>
 				<h3>Institucion: {encargo.nombreInstitucion}</h3>

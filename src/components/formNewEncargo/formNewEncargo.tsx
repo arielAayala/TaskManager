@@ -86,7 +86,7 @@ function FormNewEncargo() {
 		fetchData();
 	}, []);
 
-	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		try {
 			const resData = insertNewEncargo(
@@ -103,7 +103,8 @@ function FormNewEncargo() {
 
 			if (res.idEncargo) {
 				if (file?.length) {
-					handleSubmitFile(res.idEncargo);
+					console.log("anexos");
+					await handleSubmitFile(res.idEncargo);
 				}
 				console.log("cargo :)");
 				setAlert({
@@ -111,6 +112,7 @@ function FormNewEncargo() {
 					message: "Se agrego correctamente el encargo",
 				});
 			}
+			await e.target.reset();
 		} catch (error: any) {
 			console.log("no cargo :(");
 			setAlert({

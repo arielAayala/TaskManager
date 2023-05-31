@@ -1,0 +1,31 @@
+.container {
+	border-radius: 10px;
+	padding: 0.5em;
+	border: 1px solid var(--colorPrincipal);
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
+	text-decoration: none;
+	font-size: 0.7em;
+	text-decoration: none;
+	color: black;
+	word-wrap: normal;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 1em;
+}
+
+.anexo {
+	width: 150px;
+	word-wrap: unset;
+	margin: 1em;
+}
+
+.container img {
+	width: 100px;
+	height: 100px;
+}

@@ -1,4 +1,4 @@
-export default async function getAnexoByIDEncargo(idEncargo: string) {
+export default async function getEncargosAnexosByIDEncargo(idEncargo: string) {
 	const res = await fetch(
 		`http://localhost/managerBackend/AnexosEncargos.php?idEncargo=${idEncargo}`,
 		{ cache: "no-store" }

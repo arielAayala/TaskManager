@@ -4,6 +4,8 @@ export default async function insertNewEncargoAnexo(
 ) {
 	let formData = new FormData();
 	formData.append("file", encargoAnexo);
+	console.log(encargoAnexo);
+
 	const res = await fetch(
 		`http://localhost/managerBackend/AnexosEncargos.php?idEncargo=${idEncargo}`,
 		{
