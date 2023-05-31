@@ -27,13 +27,6 @@
 	font-size: 2em;
 }
 
-.container input {
-	border: 1px solid var(--colorPrincipal);
-	border-radius: 5px;
-	margin: 1em 0;
-	padding: 0 1em;
-}
-
 .container select {
 	border: 1px solid var(--colorPrincipal);
 	border-radius: 5px;

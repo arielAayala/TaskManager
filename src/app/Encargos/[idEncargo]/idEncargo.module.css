@@ -1,7 +1,8 @@
 .container {
-	padding: 0.5em 1em;
-	border: 2px solid var(--colorPrincipal);
-	color: var(--colorPrincipal);
+	margin-top: 2em;
+	padding: 2em;
+	border: 3px solid var(--colorPrincipal);
+	border-radius: 10px;
 }
 .container h2 {
 	color: black;
@@ -16,4 +17,54 @@
 .encargoAnexos {
 	display: flex;
 	margin-left: 2em;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.opciones {
+	border-radius: 10px;
+	background-color: transparent;
+	color: black;
+	border: 2px solid var(--colorPrincipal);
+	cursor: pointer;
+}
+
+.opcionesClick {
+	border-radius: 10px;
+	background-color: var(--colorPrincipal);
+	color: white;
+	border: 2px solid var(--colorPrincipal);
+	cursor: pointer;
+}
+
+.dropboxButton {
+	position: absolute;
+	right: 3em;
+	margin-top: 0.5em;
+	display: flex;
+	flex-flow: column;
+	background-color: white;
+	border: 1px solid var(--colorPrincipal);
+	border-radius: 10px;
+	padding: 1em;
+}
+.dropboxButton button {
+	border-radius: 10px;
+	background-color: transparent;
+	color: black;
+	border: 2px solid var(--colorPrincipal);
+	margin: 0.25em 0;
+	cursor: pointer;
+	padding: 0.5em;
+	transition: 0.5s;
+}
+
+.dropboxButton button:hover {
+	background-color: var(--colorPrincipal);
+	color: white;
+	border: 2px solid var(--colorPrincipal);
 }

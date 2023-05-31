@@ -4,7 +4,18 @@ import { IInstitucion } from "@/Types/IInstitucion";
 import getAllInstituciones from "@/services/getAllInstituciones";
 import updateEncargo from "@/services/updateEncargo";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, {
+	Dispatch,
+	FormEvent,
+	SetStateAction,
+	useEffect,
+	useState,
+} from "react";
+import style from "./formUpdateEncargo.module.css";
+import { IEncargo } from "@/Types/IEncargo";
+import getEncargoByID from "@/services/getEncargoByID";
+import { IMotivo } from "@/Types/IMotivo";
+import getAllMotivos from "@/services/getAllMotivos";
 
 interface Props {
 	tituloEncargo: string;
@@ -14,6 +25,8 @@ interface Props {
 	idInstitucion: number;
 	idUsuarioResponsable: number;
 	idEncargo: number;
+	idMotivo: number;
+	setEncargo: Dispatch<SetStateAction<IEncargo>>;
 }
 
 const Estados = [
@@ -70,6 +83,8 @@ function FormUpdateEncargo({
 	idTipo,
 	idUsuarioResponsable,
 	idEncargo,
+	idMotivo,
+	setEncargo,
 }: Props) {
 	const [input, setInput] = useState({
 		tituloEncargo: tituloEncargo,
@@ -77,23 +92,22 @@ function FormUpdateEncargo({
 		idInstitucion: idInstitucion,
 		idEstado: idEstado,
 		idTipo: idTipo,
+		idMotivo: idMotivo,
 	});
 
-	const router = useRouter();
-
 	const [instituciones, setInstituciones] = useState<IInstitucion[]>([]);
-
-	const [hideForm, setHideForm] = useState(false);
-
-	const handleHide = () => setHideForm(!hideForm);
+	const [motivos, setMotivos] = useState<IMotivo[]>([]);
 
 	useEffect(() => {
 		const fetch = async () => {
 			try {
 				const institucionesData = await getAllInstituciones();
+				const motivosData = await getAllMotivos();
+				setMotivos(motivosData);
 				setInstituciones(institucionesData);
 			} catch (error) {
 				setInstituciones([]);
+				setMotivos([]);
 			}
 		};
 		fetch();
@@ -108,12 +122,14 @@ function FormUpdateEncargo({
 			input.idInstitucion,
 			input.idEstado,
 			input.idTipo,
-			idUsuarioResponsable
+			idUsuarioResponsable,
+			input.idMotivo
 		);
 		const res = resData;
 		if (res === 200) {
 			console.log("actualizo :)");
-			router.refresh();
+			const [encargoData] = await getEncargoByID(idEncargo);
+			setEncargo(encargoData);
 		} else {
 			console.log("no actualizo :(");
 		}
@@ -125,76 +141,97 @@ function FormUpdateEncargo({
 
 	return (
 		<div>
-			<h3 onClick={handleHide}>⚙</h3>
-			{hideForm ? (
-				<div>
-					<form onSubmit={handleFormUpdate}>
-						<input
-							defaultValue={tituloEncargo}
-							type="text"
-							name="tituloEncargo"
-							onChange={handleChange}
-							placeholder="Ingrese un titulo"
-						/>
-						<input
-							type="text"
-							defaultValue={descripcionEncargo}
-							name="descripcionEncargo"
-							onChange={handleChange}
-							placeholder="Ingrese una descripcion"
-						/>
-						<select
-							name="idInstitucion"
-							onChange={handleChange}
-							value={idInstitucion}
-						>
-							{instituciones.map((i) => {
-								return (
-									<option
-										key={i.idInstitucion}
-										value={i.idInstitucion}
-									>
-										{i.nombreInstitucion}
-									</option>
-								);
-							})}
-						</select>
-						<select
-							name="idEstado"
-							value={idEstado}
-							onChange={handleChange}
-						>
-							{Estados.map((i) => {
-								return (
-									<option
-										value={i.idEstado}
-										key={i.idEstado}
-									>
-										{i.nombreEstado}
-									</option>
-								);
-							})}
-						</select>
-						<select
-							name="idTipo"
-							onChange={handleChange}
-							value={idTipo}
-						>
-							{Tipos.map((i) => {
-								return (
-									<option
-										value={i.idTipo}
-										key={i.idTipo}
-									>
-										{i.nombreTipo}
-									</option>
-								);
-							})}
-						</select>
-						<button type="submit">Actualizar</button>
-					</form>
-				</div>
-			) : null}
+			<form
+				className={style.container}
+				onSubmit={handleFormUpdate}
+			>
+				<label className={style.titulo}>Actualizar</label>
+				<label>Titulo Encargo</label>
+				<input
+					defaultValue={tituloEncargo}
+					type="text"
+					name="tituloEncargo"
+					onChange={handleChange}
+					placeholder="Ingrese un titulo"
+				/>
+				<label>Descripción Encargo</label>
+				<input
+					type="text"
+					defaultValue={descripcionEncargo}
+					name="descripcionEncargo"
+					onChange={handleChange}
+					placeholder="Ingrese una descripcion"
+				/>
+				<label>Institución</label>
+				<select
+					name="idInstitucion"
+					onChange={handleChange}
+					defaultValue={idInstitucion}
+				>
+					{instituciones.map((i) => {
+						return (
+							<option
+								key={i.idInstitucion}
+								value={i.idInstitucion}
+							>
+								{i.nombreInstitucion}
+							</option>
+						);
+					})}
+				</select>
+				<label>Estado</label>
+				<select
+					name="idEstado"
+					defaultValue={idEstado}
+					onChange={handleChange}
+				>
+					{Estados.map((i) => {
+						return (
+							<option
+								value={i.idEstado}
+								key={i.idEstado}
+							>
+								{i.nombreEstado}
+							</option>
+						);
+					})}
+				</select>
+				<label>Tipo</label>
+				<select
+					name="idTipo"
+					onChange={handleChange}
+					defaultValue={idTipo}
+				>
+					{Tipos.map((i) => {
+						return (
+							<option
+								value={i.idTipo}
+								key={i.idTipo}
+							>
+								{i.nombreTipo}
+							</option>
+						);
+					})}
+				</select>
+				<label>Motivos</label>
+				<select
+					name="idMotivo"
+					onChange={handleChange}
+					defaultValue={idMotivo}
+				>
+					{motivos.map((i) => {
+						return (
+							<option
+								key={i.idMotivo}
+								value={i.idMotivo}
+							>
+								{i.nombreMotivo}
+							</option>
+						);
+					})}
+				</select>
+				<button type="submit">Actualizar</button>
+			</form>
 		</div>
 	);
 }

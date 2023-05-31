@@ -1,21 +1,13 @@
 export default async function updateEncargo(
-	idEncargo: string,
+	idEncargo: number,
 	tituloEncargo: string,
 	descripcionEncargo: string,
 	idInstitucion: string,
 	idEstado: string,
 	idTipo: string,
-	idUsuarioResponsable: string
+	idUsuarioResponsable: string,
+	idMotivo: string
 ) {
-	console.log({
-		tituloEncargo: tituloEncargo,
-		descripcionEncargo: descripcionEncargo,
-		idInstitucion: parseInt(idInstitucion),
-		idEstado: parseInt(idEstado),
-		idTipo: parseInt(idTipo),
-		idUsuarioResponsable: parseInt(idUsuarioResponsable),
-	});
-
 	const res = await fetch(
 		`http://localhost/managerBackend/Encargos.php?idEncargo=${idEncargo}`,
 		{
@@ -27,10 +19,10 @@ export default async function updateEncargo(
 				idEstado: parseInt(idEstado),
 				idTipo: parseInt(idTipo),
 				idUsuarioResponsable: parseInt(idUsuarioResponsable),
+				idMotivo: parseInt(idMotivo),
 			}),
 		}
 	);
-	console.log(res.body);
 
 	if (!res.ok) {
 		throw new Error("Hubo un error al actualizar los datos del encargo");

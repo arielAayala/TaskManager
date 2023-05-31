@@ -18,9 +18,10 @@ import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 import Notas from "@/components/notas/notas";
 import { INotas } from "@/Types/INotas";
 import Anexos from "@/components/anexos/anexos";
+import FormDelegarEncargo from "@/components/formDelegarEncargo/formDelegarEncargo";
 
 interface Params {
-	params: { idEncargo: string };
+	params: { idEncargo: number };
 }
 
 export default function EncargoID({ params: { idEncargo } }: Params) {
@@ -32,8 +33,12 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 
 	const [encargo, setEncargo] = useState<IEncargo>([]);
 	const [encargoAnexos, setEncargoAnexos] = useState<IEncargoAnexo[]>([]);
-	const [usuario, setUsuario] = useState<IUsuario[]>([]);
+
 	const [notas, setNotas] = useState<INotas[]>([]);
+
+	const [hide, setHide] = useState(true);
+	const [configuracion, setConfiguracion] = useState(true);
+	const [delegar, setDelegar] = useState(true);
 
 	const handleNewUserResponsable = async () => {
 		try {
@@ -46,21 +51,35 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 		}
 	};
 
+	const handleHide = () => {
+		setHide(!hide);
+		setConfiguracion(true);
+		setDelegar(true);
+	};
+	const handleConfiguracion = () => {
+		setConfiguracion(!configuracion);
+		setHide(true);
+		setDelegar(true);
+	};
+
+	const handleDelegar = () => {
+		setDelegar(!delegar);
+		setConfiguracion(true);
+		setHide(true);
+	};
+
 	useEffect(() => {
 		const fetch = async () => {
 			try {
 				const [encargoData] = await getEncargoByID(idEncargo);
 				const anexoData = await getEncargosAnexosByIDEncargo(idEncargo);
-				const usuarioData = await getAllUser();
 				const notasData = await getAllNotasByIdEncargo(idEncargo);
 				setEncargo(encargoData);
 				setEncargoAnexos(anexoData);
-				setUsuario(usuarioData);
 				setNotas(notasData);
 			} catch (error) {
 				setEncargo([]);
 				setEncargoAnexos([]);
-				setUsuario([]);
 				setNotas([]);
 			}
 		};
@@ -83,11 +102,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				></Image>{" "}
 			</Link>
 			<div className={style.container}>
-				<h1>
-					{encargo.idEncargo} -{" "}
-					{encargo.tituloEncargo ? encargo.tituloEncargo : "Sin titulo"}
-				</h1>
-				{idUsuario == encargo.idUsuarioResponsable ? (
+				{configuracion ? null : (
 					<FormUpdateEncargo
 						tituloEncargo={encargo.tituloEncargo}
 						descripcionEncargo={encargo.descripcionEncargo}
@@ -96,8 +111,48 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						idInstitucion={encargo.idInstitucion}
 						idUsuarioResponsable={encargo.idUsuarioResponsable}
 						idEncargo={encargo.idEncargo}
+						idMotivo={encargo.idMotivo}
+						setEncargo={setEncargo}
 					></FormUpdateEncargo>
-				) : null}
+				)}
+				{delegar ? null : (
+					<FormDelegarEncargo
+						idUsuario={idUsuario}
+						tituloEncargo={encargo.tituloEncargo}
+						descripcionEncargo={encargo.descripcionEncargo}
+						idEstado={encargo.idEstado}
+						idTipo={encargo.idTipo}
+						idInstitucion={encargo.idInstitucion}
+						idEncargo={encargo.idEncargo}
+						idMotivo={encargo.idMotivo}
+						setEncargo={setEncargo}
+						setDelegar={setDelegar}
+					></FormDelegarEncargo>
+				)}
+
+				<div className={style.header}>
+					<h1>
+						{encargo.idEncargo} -{" "}
+						{encargo.tituloEncargo ? encargo.tituloEncargo : "Sin titulo"}
+					</h1>
+					{idUsuario == encargo.idUsuarioResponsable ? (
+						<div>
+							<button
+								className={hide ? style.opciones : style.opcionesClick}
+								onClick={handleHide}
+							>
+								⚙
+							</button>
+							{hide ? null : (
+								<div className={style.dropboxButton}>
+									<button onClick={handleConfiguracion}>Configuración</button>
+									<button onClick={handleDelegar}>Delegar</button>
+									<button disabled>Borrar</button>
+								</div>
+							)}
+						</div>
+					) : null}
+				</div>
 				<h2>{encargo.descripcionEncargo}</h2>
 				{encargoAnexos.length > 0 ? (
 					<div>
@@ -117,6 +172,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				) : null}
 				<h3>Estado del Encargo: {encargo.nombreEstado}</h3>
 				<h3>Tipo del Encargo: {encargo.nombreTipo}</h3>
+				<h3>Motivo del Encargo: {encargo.nombreMotivo}</h3>
 				<h3>Institucion: {encargo.nombreInstitucion}</h3>
 				<h3>Creado el: {encargo.fechaCreacionEncargo}</h3>
 				<h3>Creado por: {encargo.nombreCreador}</h3>
@@ -131,25 +187,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				)}
 				{encargo.idUsuarioResponsable == idUsuario ? (
 					<div>
-						<div>
-							Delegar a:
-							<select name="idUsuarioResponsable">
-								{usuario.map((i) => {
-									if (i.idUsuario == idUsuario) {
-										return null;
-									}
-									return (
-										<option
-											value={i.idUsuario}
-											key={i.idUsuario}
-										>
-											{i.nombrePsicopedagogo}
-										</option>
-									);
-								})}
-							</select>
-							<button>Confirmar </button>
-						</div>
+						<div></div>
 						<div>
 							<button>Agregar nota</button>
 						</div>
