@@ -30,6 +30,7 @@ interface Props {
 	idMotivo: number;
 	setEncargo: Dispatch<SetStateAction<IEncargo>>;
 	setNotas: Dispatch<SetStateAction<INotas[]>>;
+	setConfiguracion: Dispatch<SetStateAction<boolean>>;
 }
 
 const Estados = [
@@ -89,6 +90,7 @@ function FormUpdateEncargo({
 	idMotivo,
 	setEncargo,
 	setNotas,
+	setConfiguracion,
 }: Props) {
 	const [input, setInput] = useState({
 		tituloEncargo: tituloEncargo,
@@ -146,12 +148,15 @@ function FormUpdateEncargo({
 	};
 
 	return (
-		<div>
+		<div className={style.background}>
 			<form
 				className={style.container}
 				onSubmit={handleFormUpdate}
 			>
-				<label className={style.titulo}>Actualizar</label>
+				<div className={style.header}>
+					<label className={style.titulo}>Actualizar</label>
+					<button onClick={() => setConfiguracion(true)}>Cerrar</button>
+				</div>
 				<label>Titulo Encargo</label>
 				<input
 					defaultValue={tituloEncargo}

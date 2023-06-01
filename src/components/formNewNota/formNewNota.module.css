@@ -11,6 +11,7 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .container {
 	position: absolute;
 	display: flex;
@@ -28,6 +29,7 @@
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
+	z-index: 1;
 }
 .container label {
 	margin: 0;
@@ -40,11 +42,19 @@
 	font-size: 2em;
 }
 
-.container select {
+.container input {
 	border: 1px solid var(--colorPrincipal);
 	border-radius: 5px;
 	margin: 1em 0;
-	padding: 0 1em;
+	padding: 1em 1em;
+}
+
+.container textarea {
+	border: 1px solid var(--colorPrincipal);
+	border-radius: 5px;
+	margin: 1em 0;
+	padding: 1em 1em;
+	resize: none;
 }
 .container button {
 	border: 1px solid var(--colorPrincipal);

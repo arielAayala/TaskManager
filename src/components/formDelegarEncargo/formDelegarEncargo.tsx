@@ -82,12 +82,15 @@ function FormDelegarEncargo({
 	}, []);
 
 	return (
-		<div>
+		<div className={style.background}>
 			<form
 				onSubmit={handleSubmit}
 				className={style.container}
 			>
-				<label className={style.titulo}>Delegar</label>
+				<div className={style.header}>
+					<label className={style.titulo}>Delegar</label>
+					<button onClick={() => setDelegar(true)}>Cerrar</button>
+				</div>
 				<label>Delegar a:</label>
 				<select
 					name="idUsuarioResponsable"

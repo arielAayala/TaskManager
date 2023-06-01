@@ -19,6 +19,7 @@ import Notas from "@/components/notas/notas";
 import { INotas } from "@/Types/INotas";
 import Anexos from "@/components/anexos/anexos";
 import FormDelegarEncargo from "@/components/formDelegarEncargo/formDelegarEncargo";
+import FormNewNota from "@/components/formNewNota/formNewNota";
 
 interface Params {
 	params: { idEncargo: number };
@@ -38,6 +39,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 	const [hide, setHide] = useState(true);
 	const [configuracion, setConfiguracion] = useState(true);
 	const [delegar, setDelegar] = useState(true);
+	const [nota, setNota] = useState(true);
 
 	const handleNewUserResponsable = async () => {
 		try {
@@ -54,16 +56,26 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 		setHide(!hide);
 		setConfiguracion(true);
 		setDelegar(true);
+		setNota(true);
 	};
 	const handleConfiguracion = () => {
 		setConfiguracion(!configuracion);
 		setHide(true);
 		setDelegar(true);
+		setNota(true);
 	};
 
 	const handleDelegar = () => {
 		setDelegar(!delegar);
 		setConfiguracion(true);
+		setHide(true);
+		setNota(true);
+	};
+
+	const handleNota = () => {
+		setNota(!nota);
+		setConfiguracion(true);
+		setDelegar(true);
 		setHide(true);
 	};
 
@@ -113,6 +125,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						idMotivo={encargo.idMotivo}
 						setEncargo={setEncargo}
 						setNotas={setNotas}
+						setConfiguracion={setConfiguracion}
 					></FormUpdateEncargo>
 				)}
 				{delegar ? null : (
@@ -130,6 +143,13 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						setNotas={setNotas}
 					></FormDelegarEncargo>
 				)}
+				{nota ? null : (
+					<FormNewNota
+						idEncargo={encargo.idEncargo}
+						idUsuario={idUsuario}
+						setNota={setNota}
+					></FormNewNota>
+				)}
 
 				<div className={style.header}>
 					<h1>
@@ -146,7 +166,8 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 							</button>
 							{hide ? null : (
 								<div className={style.dropboxButton}>
-									<button onClick={handleConfiguracion}>Configuración</button>
+									<button onClick={handleNota}>Agregar Nota</button>
+									<button onClick={handleConfiguracion}>Actualizar</button>
 									<button onClick={handleDelegar}>Delegar</button>
 									<button disabled>Borrar</button>
 								</div>
@@ -186,16 +207,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				{encargo.idUsuarioResponsable ? null : (
 					<button onClick={handleNewUserResponsable}>Asignarse Encargo</button>
 				)}
-				{encargo.idUsuarioResponsable == idUsuario ? (
-					<div>
-						<div></div>
-						<div>
-							<button>Agregar nota</button>
-						</div>
-					</div>
-				) : null}
 			</div>
-
 			<div>
 				<h3>Notas del encargo:</h3>
 				{notas.map((i) => {
