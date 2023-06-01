@@ -16,6 +16,8 @@ import { IEncargo } from "@/Types/IEncargo";
 import getEncargoByID from "@/services/getEncargoByID";
 import { IMotivo } from "@/Types/IMotivo";
 import getAllMotivos from "@/services/getAllMotivos";
+import { INotas } from "@/Types/INotas";
+import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 
 interface Props {
 	tituloEncargo: string;
@@ -27,6 +29,7 @@ interface Props {
 	idEncargo: number;
 	idMotivo: number;
 	setEncargo: Dispatch<SetStateAction<IEncargo>>;
+	setNotas: Dispatch<SetStateAction<INotas[]>>;
 }
 
 const Estados = [
@@ -85,6 +88,7 @@ function FormUpdateEncargo({
 	idEncargo,
 	idMotivo,
 	setEncargo,
+	setNotas,
 }: Props) {
 	const [input, setInput] = useState({
 		tituloEncargo: tituloEncargo,
@@ -130,6 +134,8 @@ function FormUpdateEncargo({
 			console.log("actualizo :)");
 			const [encargoData] = await getEncargoByID(idEncargo);
 			setEncargo(encargoData);
+			const notasData = await getAllNotasByIdEncargo(idEncargo);
+			setNotas(notasData);
 		} else {
 			console.log("no actualizo :(");
 		}

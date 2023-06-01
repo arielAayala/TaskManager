@@ -33,7 +33,6 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 
 	const [encargo, setEncargo] = useState<IEncargo>([]);
 	const [encargoAnexos, setEncargoAnexos] = useState<IEncargoAnexo[]>([]);
-
 	const [notas, setNotas] = useState<INotas[]>([]);
 
 	const [hide, setHide] = useState(true);
@@ -113,6 +112,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						idEncargo={encargo.idEncargo}
 						idMotivo={encargo.idMotivo}
 						setEncargo={setEncargo}
+						setNotas={setNotas}
 					></FormUpdateEncargo>
 				)}
 				{delegar ? null : (
@@ -127,6 +127,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						idMotivo={encargo.idMotivo}
 						setEncargo={setEncargo}
 						setDelegar={setDelegar}
+						setNotas={setNotas}
 					></FormDelegarEncargo>
 				)}
 

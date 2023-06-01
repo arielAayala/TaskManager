@@ -25,13 +25,21 @@ export default function ButtonLogin() {
 					className={style.link}
 					href={`/Profesionales/${idPsicopedagogo}`}
 				>
-					<Image
-						className={style.fotoPsicopedagogo}
-						alt="perfil"
-						width={50}
-						height={50}
-						src={fotoPsicopedagogo ? fotoPsicopedagogo : perfilDefault}
-					></Image>
+					{fotoPsicopedagogo ? (
+						<img
+							src={fotoPsicopedagogo}
+							alt=""
+							className={style.fotoPsicopedagogo}
+						/>
+					) : (
+						<Image
+							className={style.fotoPsicopedagogo}
+							alt="perfil"
+							width={50}
+							height={50}
+							src={perfilDefault}
+						></Image>
+					)}
 				</Link>
 			)}
 		</div>

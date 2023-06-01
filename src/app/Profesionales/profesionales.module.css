@@ -4,14 +4,13 @@
 }
 
 .rowCard {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .card {
 	padding: 0.5em;
-	margin: auto;
+	margin: 2em;
 	border: 1.5px solid var(--colorPrincipal);
 	height: min-content;
 	width: min-content;
@@ -25,4 +24,9 @@
 
 .card .link {
 	text-decoration: none;
+}
+
+.image {
+	width: 200px;
+	height: 200px;
 }

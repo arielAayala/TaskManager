@@ -31,13 +31,22 @@ function Profesionales() {
 								className={style.card}
 								key={i.idPsicopedagogo}
 							>
-								<Image
-									className={style.image}
-									width={200}
-									height={200}
-									alt="fotografia"
-									src={i.fotoPsicopedagogo ? i.fotoPsicopedagogo : foto}
-								></Image>
+								{i.fotoPsicopedagogo ? (
+									<img
+										src={i.fotoPsicopedagogo}
+										className={style.image}
+										alt="Profesional"
+									/>
+								) : (
+									<Image
+										className={style.image}
+										width={200}
+										height={200}
+										alt="fotografia"
+										src={foto}
+									></Image>
+								)}
+
 								<h3>
 									{i.nombrePsicopedagogo.replace(
 										/(^\w{1})|(\s+\w{1})/g,

@@ -24,16 +24,21 @@ export default async function ProfesionalID({
 	return (
 		<div className={style.container}>
 			<div className={style.header}>
-				<Image
-					width={200}
-					height={200}
-					alt="fotografia"
-					src={
-						psicopedagogo.fotoPsicopedagogo
-							? psicopedagogo.fotoPsicopedagogo
-							: foto
-					}
-				></Image>
+				{psicopedagogo.fotoPsicopedagogo ? (
+					<img
+						src={psicopedagogo.fotoPsicopedagogo}
+						alt="fotografia"
+						className={style.image}
+					/>
+				) : (
+					<Image
+						className={style.image}
+						width={200}
+						height={200}
+						alt="fotografia"
+						src={foto}
+					></Image>
+				)}
 				<div className={style.nameHeader}>
 					<h3>
 						{psicopedagogo.nombrePsicopedagogo.replace(

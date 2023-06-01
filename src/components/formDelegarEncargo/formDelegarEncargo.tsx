@@ -5,6 +5,8 @@ import style from "./formDelegarEncargo.module.css";
 import { IEncargo } from "@/Types/IEncargo";
 import updateEncargo from "@/services/updateEncargo";
 import getEncargoByID from "@/services/getEncargoByID";
+import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
+import { INotas } from "@/Types/INotas";
 
 interface Props {
 	idUsuario: number;
@@ -17,6 +19,7 @@ interface Props {
 	idMotivo: number;
 	setEncargo: Dispatch<SetStateAction<IEncargo>>;
 	setDelegar: Dispatch<SetStateAction<boolean>>;
+	setNotas: Dispatch<SetStateAction<INotas[]>>;
 }
 
 function FormDelegarEncargo({
@@ -30,8 +33,10 @@ function FormDelegarEncargo({
 	idMotivo,
 	setEncargo,
 	setDelegar,
+	setNotas,
 }: Props) {
 	const [usuario, setUsuario] = useState<IUsuario[]>([]);
+
 	const [nuevoResponsable, setNuevoResponsable] = useState();
 
 	const handleSubmit = async (e: any) => {
@@ -50,6 +55,8 @@ function FormDelegarEncargo({
 		if (res === 200) {
 			console.log("actualizo :)");
 			const [encargoData] = await getEncargoByID(idEncargo);
+			const notasData = await getAllNotasByIdEncargo(idEncargo);
+			setNotas(notasData);
 			setEncargo(encargoData);
 			setDelegar(true);
 		} else {

@@ -175,6 +175,7 @@ function FormNewEncargo() {
 							</option>
 						);
 					})}
+					<option value="">Agregar</option>
 				</select>
 				<br />
 
