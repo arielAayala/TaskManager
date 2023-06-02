@@ -48,8 +48,8 @@ function FormNewEncargo() {
 	}
 
 	const [alert, setAlert] = useState({
-		hide: true,
-		message: "",
+		mensaje: "",
+		color: "",
 	});
 
 	const [lstInstituciones, setLstInstituciones] = useState<IInstitucion[]>([]);
@@ -99,26 +99,26 @@ function FormNewEncargo() {
 				input.descripcionEncargo
 			);
 			const res = await resData;
-			console.log("esperando");
 
 			if (res.idEncargo) {
 				if (file?.length) {
-					console.log("anexos");
-					await handleSubmitFile(res.idEncargo);
+					const resFile = await handleSubmitFile(res.idEncargo);
+					if (resFile) {
+						setAlert({ mensaje: "Se cargo correctamente", color: "green" });
+					} else {
+						setAlert({
+							mensaje: "Hubo un Error al cargar los archivos",
+							color: "red",
+						});
+					}
+				} else {
+					setAlert({ mensaje: "Se cargo correctamente", color: "green" });
 				}
-				console.log("cargo :)");
-				setAlert({
-					hide: false,
-					message: "Se agrego correctamente el encargo",
-				});
+			} else {
+				setAlert({ mensaje: "Hubo un Error", color: "red" });
 			}
-			await e.target.reset();
-		} catch (error: any) {
-			console.log("no cargo :(");
-			setAlert({
-				hide: false,
-				message: error.message,
-			});
+		} catch (error) {
+			setAlert({ mensaje: "Hubo un Error", color: "red" });
 		}
 	};
 
@@ -131,10 +131,12 @@ function FormNewEncargo() {
 	};
 
 	const handleSubmitFile = async (idEncargo: number) => {
+		let lstRes: [] = [];
 		for (let i = 0; i < file.length; i++) {
 			const res = await insertNewEncargoAnexo(idEncargo, file[i]);
-			console.log(res);
+			lstRes.push(res);
 		}
+		return lstRes.every((i) => i === 200);
 	};
 
 	return (
@@ -143,6 +145,12 @@ function FormNewEncargo() {
 				className={style.form}
 				onSubmit={handleSubmit}
 			>
+				<div
+					className={style.alert}
+					style={{ background: alert.color }}
+				>
+					{alert.mensaje}
+				</div>
 				<label>Titulo </label>
 				<input
 					type="text"
@@ -266,13 +274,6 @@ function FormNewEncargo() {
 					multiple
 					onChange={handleChangeFile}
 				/>
-
-				<div
-					className={style.alert}
-					style={alert.hide ? { display: "none" } : { display: "contents" }}
-				>
-					{alert.message}
-				</div>
 				<button type="submit">Crear Nuevo Encargo</button>
 			</form>
 		</div>

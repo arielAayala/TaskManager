@@ -9,7 +9,7 @@ export default async function insertNewNota(
 			method: "POST",
 			body: JSON.stringify({
 				idUsuarioCreador: idUsuarioCreador,
-				$comentarioNota: comentario,
+				comentarioNota: comentario,
 			}),
 		}
 	);
@@ -18,5 +18,5 @@ export default async function insertNewNota(
 		throw new Error("Error al agregar la nota");
 	}
 
-	return res.status;
+	return res.json();
 }
