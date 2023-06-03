@@ -3,15 +3,38 @@
 	padding: 2em;
 	border: 3px solid var(--colorPrincipal);
 	border-radius: 10px;
+	background-color: rgb(199, 238, 253);
 }
-.container h2 {
-	color: black;
+
+.descripcion {
 	padding: 0.5em 1em;
-	background-color: beige;
 }
-.container h3 {
-	padding: 0.5em 1em;
-	color: black;
+
+.descripcion h2 {
+	font-size: 1.2em;
+}
+
+.descripcion h3 {
+	background-color: white;
+	padding: 1em;
+	border-radius: 10px;
+	border: 2px solid var(--colorPrincipal);
+}
+
+.responsable {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
+
+.fotoResponsable {
+	width: max-content;
+}
+
+.responsable img {
+	width: 100px;
+	height: 100px;
+	border-radius: 20px;
 }
 
 .encargoAnexos {
@@ -27,7 +50,7 @@
 
 .opciones {
 	border-radius: 10px;
-	background-color: transparent;
+	background-color: white;
 	color: black;
 	border: 2px solid var(--colorPrincipal);
 	cursor: pointer;
@@ -54,7 +77,7 @@
 }
 .dropboxButton button {
 	border-radius: 10px;
-	background-color: transparent;
+	background-color: white;
 	color: black;
 	border: 2px solid var(--colorPrincipal);
 	margin: 0.25em 0;
@@ -67,4 +90,47 @@
 	background-color: var(--colorPrincipal);
 	color: white;
 	border: 2px solid var(--colorPrincipal);
+}
+
+.btnAsignarse {
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	border: 2px solid var(--colorPrincipal);
+	margin-top: 2em;
+	cursor: pointer;
+	padding: 0.5em;
+	transition: 0.5s;
+}
+
+.btnAsignarse:hover {
+	background-color: var(--colorPrincipal);
+	color: white;
+	border: 2px solid var(--colorPrincipal);
+}
+
+.notas {
+	margin: 0 8em;
+}
+
+.btnHideNota {
+	padding: 0.75em 1em;
+	margin-top: 2em;
+	border: 2px solid var(--colorPrincipal);
+	background-color: transparent;
+	border-radius: 10px;
+	transition: 0.5s;
+	cursor: pointer;
+	width: max-content;
+}
+
+.btnHideNota:hover {
+	border: 2px solid var(--colorPrincipal);
+	background-color: var(--colorPrincipal);
+	color: white;
+}
+
+.containerEncargo {
+	display: flex;
+	flex-flow: column;
 }

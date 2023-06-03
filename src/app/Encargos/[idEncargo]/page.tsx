@@ -12,14 +12,13 @@ import { useContextLogin } from "@/context/contextLogin";
 import { redirect } from "next/navigation";
 import FormUpdateEncargo from "@/components/FormUpdateEncargo/FormUpdateEncargo";
 import newResponsable from "@/services/newResponsable";
-import { IUsuario } from "@/Types/IUsuario";
-import getAllUser from "@/services/getAllUser";
 import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 import Notas from "@/components/notas/notas";
 import { INotas } from "@/Types/INotas";
 import Anexos from "@/components/anexos/anexos";
 import FormDelegarEncargo from "@/components/formDelegarEncargo/formDelegarEncargo";
 import FormNewNota from "@/components/formNewNota/formNewNota";
+import foto from "../../../../public/perfilDefautl.png";
 
 interface Params {
 	params: { idEncargo: number };
@@ -40,6 +39,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 	const [configuracion, setConfiguracion] = useState(true);
 	const [delegar, setDelegar] = useState(true);
 	const [nota, setNota] = useState(true);
+	const [hideNota, setHideNota] = useState(true);
 
 	const handleNewUserResponsable = async () => {
 		try {
@@ -47,6 +47,10 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 			if (resData == 200) {
 				console.log("se registro el nuevo responsable");
 			}
+			const [encargoData] = await getEncargoByID(idEncargo);
+			const notasData = await getAllNotasByIdEncargo(idEncargo);
+			setEncargo(encargoData);
+			setNotas(notasData);
 		} catch (error) {
 			console.log(error);
 		}
@@ -58,6 +62,7 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 		setDelegar(true);
 		setNota(true);
 	};
+
 	const handleConfiguracion = () => {
 		setConfiguracion(!configuracion);
 		setHide(true);
@@ -85,9 +90,9 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 				const [encargoData] = await getEncargoByID(idEncargo);
 				const anexoData = await getEncargosAnexosByIDEncargo(idEncargo);
 				const notasData = await getAllNotasByIdEncargo(idEncargo);
+				setNotas(notasData);
 				setEncargo(encargoData);
 				setEncargoAnexos(anexoData);
-				setNotas(notasData);
 			} catch (error) {
 				setEncargo([]);
 				setEncargoAnexos([]);
@@ -98,16 +103,18 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 		console.log("hola cargue");
 	}, []);
 
+	console.log(notas);
+
 	return (
-		<div>
+		<div className={style.containerEncargo}>
 			<Link
 				href={"/Encargos"}
 				className={style.link}
 			>
 				<Image
 					className={style.image}
-					width={30}
-					height={30}
+					width={50}
+					height={50}
 					alt="<-"
 					src={backrow}
 				></Image>{" "}
@@ -148,14 +155,14 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						idEncargo={encargo.idEncargo}
 						idUsuario={idUsuario}
 						setNota={setNota}
+						setNotas={setNotas}
 					></FormNewNota>
 				)}
-
 				<div className={style.header}>
-					<h1>
+					<h2>
 						{encargo.idEncargo} -{" "}
 						{encargo.tituloEncargo ? encargo.tituloEncargo : "Sin titulo"}
-					</h1>
+					</h2>
 					{idUsuario == encargo.idUsuarioResponsable ? (
 						<div>
 							<button
@@ -175,53 +182,112 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 						</div>
 					) : null}
 				</div>
-				<h2>{encargo.descripcionEncargo}</h2>
-				{encargoAnexos.length > 0 ? (
-					<div>
-						<h3>Archivo del encargo:</h3>
-						<div className={style.encargoAnexos}>
-							{encargoAnexos.map((i) => {
-								return (
-									<Anexos
-										key={i.idEncargoAnexo}
-										urlEncargoAnexo={i.urlEncargoAnexo}
-										nombreEncargoAnexo={i.nombreEncargoAnexo}
-									></Anexos>
-								);
-							})}
+				<div className={style.descripcion}>
+					<h2>Descripción:</h2>
+					<h3>{encargo.descripcionEncargo}</h3>
+					{encargoAnexos.length > 0 ? (
+						<div>
+							<h2>Archivo del encargo:</h2>
+							<div className={style.encargoAnexos}>
+								{encargoAnexos.map((i) => {
+									return (
+										<Anexos
+											key={i.idEncargoAnexo}
+											urlEncargoAnexo={i.urlEncargoAnexo}
+											nombreEncargoAnexo={i.nombreEncargoAnexo}
+										></Anexos>
+									);
+								})}
+							</div>
 						</div>
-					</div>
-				) : null}
-				<h3>Estado del Encargo: {encargo.nombreEstado}</h3>
-				<h3>Tipo del Encargo: {encargo.nombreTipo}</h3>
-				<h3>Motivo del Encargo: {encargo.nombreMotivo}</h3>
-				<h3>Institucion: {encargo.nombreInstitucion}</h3>
-				<h3>Creado el: {encargo.fechaCreacionEncargo}</h3>
-				<h3>Creado por: {encargo.nombreCreador}</h3>
-				<h3>Responsable actual: {encargo.nombreResponsable}</h3>
-				<h3>
-					{encargo.fechaCierreEncargo
-						? `finalizado el: ${encargo.fechaCierreEncargo}`
-						: null}
-				</h3>
-				{encargo.idUsuarioResponsable ? null : (
-					<button onClick={handleNewUserResponsable}>Asignarse Encargo</button>
-				)}
+					) : null}
+					<h2>Estado del Encargo:</h2>
+					<h3>{encargo.nombreEstado}</h3>
+					<h2>Tipo del Encargo:</h2> <h3>{encargo.nombreTipo}</h3>
+					<h2>Motivo del Encargo: </h2>
+					<h3>{encargo.nombreMotivo}</h3>
+					<h2>Institucion: </h2>
+					<h3>{encargo.nombreInstitucion}</h3>
+					<h2>Creado el: </h2>
+					<h3>{encargo.fechaCreacionEncargo}</h3>
+					{encargo.idUsuarioResponsable ? (
+						<div className={style.responsable}>
+							<h2>Responsable actual: </h2>
+							<div>
+								{encargo.fotoResponsable ? (
+									<img
+										src={encargo.fotoResponsable}
+										alt={encargo.nombreResponsable}
+										title={encargo.nombreResponsable}
+									></img>
+								) : (
+									<Image
+										src={foto}
+										alt={encargo.nombreResponsable}
+										title={encargo.nombreResponsable}
+									></Image>
+								)}
+							</div>
+						</div>
+					) : (
+						<div className={style.responsable}>
+							<h2>Creador: </h2>
+							<div>
+								{encargo.fotoCreador ? (
+									<img
+										src={encargo.fotoCreador}
+										alt={encargo.nombreCreador}
+										title={encargo.nombreCreador}
+									></img>
+								) : (
+									<Image
+										src={foto}
+										alt={encargo.nombreCreador}
+										title={encargo.nombreCreador}
+									></Image>
+								)}
+							</div>
+						</div>
+					)}
+					{encargo.idUsuarioResponsable ? null : (
+						<button
+							className={style.btnAsignarse}
+							onClick={handleNewUserResponsable}
+						>
+							Asignarse Encargo
+						</button>
+					)}
+				</div>
 			</div>
-			<div>
-				<h3>Notas del encargo:</h3>
-				{notas.map((i) => {
-					return (
-						<Notas
-							key={i.idNota}
-							idNota={i.idNota}
-							fechaCreacionNota={i.fechaCreacionNota}
-							comentarioNota={i.comentarioNota}
-							idUsuarioCreador={i.idUsuarioCreador}
-						></Notas>
-					);
-				})}
-			</div>
+			<button
+				className={style.btnHideNota}
+				onClick={() => setHideNota(!hideNota)}
+			>
+				{hideNota
+					? "Mostrar Notas Historial (" + notas.length + " Notas)"
+					: "Ocultar Notas"}
+			</button>
+			{!hideNota ? (
+				<div className={style.notas}>
+					<h3>Notas del encargo:</h3>
+					{notas.map((i) => {
+						return (
+							<Notas
+								key={i.idNota}
+								fechaCreacionNota={i.fechaCreacionNota}
+								comentarioNota={i.comentarioNota}
+								idUsuarioCreador={i.idUsuarioCreador}
+								nombreCreador={i.nombreCreador}
+								fotoCreador={i.fotoCreador}
+								idNuevoResponsable={i.idNuevoResponsable}
+								nombreNuevoResponsable={i.nombreNuevoResponsable}
+								fotoNuevoResponsable={i.fotoNuevoResponsable}
+								notasAnexo={i.notasAnexo}
+							></Notas>
+						);
+					})}
+				</div>
+			) : null}
 		</div>
 	);
 }

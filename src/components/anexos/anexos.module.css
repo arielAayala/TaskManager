@@ -2,30 +2,24 @@
 	border-radius: 10px;
 	padding: 0.5em;
 	border: 1px solid var(--colorPrincipal);
-	width: 100px;
-	height: 100px;
+	width: 130px;
+	height: 150px;
 	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-flow: column;
-	text-decoration: none;
 	font-size: 0.7em;
-	text-decoration: none;
-	color: black;
-	word-wrap: normal;
-	width: 100%;
 	text-align: center;
 	padding-bottom: 1em;
+	background-color: white;
+	display: inline-block;
+	margin: 1em 2em;
 }
 
-.anexo {
-	width: 150px;
-	word-wrap: unset;
-	margin: 1em;
+.container a {
+	text-decoration: none;
+	color: black;
+	width: 100%;
 }
 
 .container img {
-	width: 100px;
+	width: 100%;
 	height: 100px;
 }

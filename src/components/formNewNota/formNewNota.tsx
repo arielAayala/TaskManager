@@ -4,14 +4,16 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import style from "./formNewNota.module.css";
 import insertNewNota from "@/services/insertNewNota";
 import insertNotasAnexoByIdNota from "@/services/insertNotasAnexoByIdNota";
+import getAllNotasByIdEncargo from "@/services/getAllNotasByIdEncargo";
 
 interface Props {
 	idUsuario: number;
 	idEncargo: number;
 	setNota: Dispatch<SetStateAction<boolean>>;
+	setNotas: Dispatch<SetStateAction<any>>;
 }
 
-function FormNewNota({ idEncargo, idUsuario, setNota }: Props) {
+function FormNewNota({ idEncargo, idUsuario, setNota, setNotas }: Props) {
 	const [input, setInput] = useState({
 		comentarioNota: "",
 	});
@@ -36,6 +38,8 @@ function FormNewNota({ idEncargo, idUsuario, setNota }: Props) {
 					const resFile = await handleSubmitFile(res.idNota);
 					if (resFile) {
 						setAlert({ mensaje: "Se cargo correctamente", color: "green" });
+						const notasData = await getAllNotasByIdEncargo(idEncargo);
+						setNotas(notasData);
 					} else {
 						setAlert({
 							mensaje: "Hubo un Error al cargar los archivos",
@@ -44,6 +48,8 @@ function FormNewNota({ idEncargo, idUsuario, setNota }: Props) {
 					}
 				} else {
 					setAlert({ mensaje: "Se cargo correctamente", color: "green" });
+					const notasData = await getAllNotasByIdEncargo(idEncargo);
+					setNotas(notasData);
 				}
 			} else {
 				setAlert({ mensaje: "Hubo un Error", color: "red" });

@@ -1,7 +1,31 @@
 .container {
-	margin: 1em;
+	margin: 5em;
 	border-radius: 10px;
 	border: 1px solid var(--colorPrincipal);
 	padding: 1em;
 	font-size: 1em;
+	background-color: #7eddff;
+}
+
+.container h4 {
+	background-color: white;
+	padding: 1em;
+	border: 2px solid var(--colorPrincipal);
+	border-radius: 10px;
+}
+
+.notasAnexo {
+	display: flex;
+}
+
+.foto {
+	height: 100px;
+	width: 100px;
+	border-radius: 20px;
+}
+
+.header {
+	display: flex;
+	flex-flow: column;
+	align-content: center;
 }

@@ -1,13 +1,18 @@
 export interface INotas {
 	idNota: number;
-	fechaCreacionNota: string;
-	idUsuarioCreador: number;
 	comentarioNota: string;
-	anexosNotas: AnexoNota[];
+	fechaCreacionNota: string;
+	idUsuarioCreador: string;
+	nombreCreador: string;
+	fotoCreador: string;
+	idNuevoResponsable: string;
+	nombreNuevoResponsable: string;
+	fotoNuevoResponsable: string;
+	notasAnexo: Anexo[];
 }
 
-interface AnexoNota {
+interface Anexo {
+	nombreNotaAnexo: string;
 	idNotaAnexo: number;
 	urlNotaAnexo: string;
-	idNota: number;
 }
