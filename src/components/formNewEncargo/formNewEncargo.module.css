@@ -56,3 +56,19 @@
 	background-color: var(--colorPrincipal);
 	color: var(--colorDetalles);
 }
+
+.agregarForm {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.agregarForm button {
+	margin: 0.5em 1em;
+	font-size: 0.5em;
+	cursor: pointer;
+}
+
+.agregarForm p {
+	margin: 0;
+}

@@ -12,6 +12,7 @@ import getAllMotivos from "@/services/getAllMotivos";
 import { IMotivo } from "@/Types/IMotivo";
 import { redirect } from "next/navigation";
 import insertNewEncargoAnexo from "@/services/insertNewEncargoAnexo";
+import FormNewInstitucion from "../formNewInstitucion/formNewInstitucion";
 
 const Tipos = [
 	{
@@ -51,6 +52,9 @@ function FormNewEncargo() {
 		mensaje: "",
 		color: "",
 	});
+
+	const [hideFormNewInstitucion, setHideFormNewInstitucion] = useState(true);
+	const [hideFormNewMotivo, setHideFormNewMotivo] = useState(true);
 
 	const [lstInstituciones, setLstInstituciones] = useState<IInstitucion[]>([]);
 	const [lstMotivos, setLstMotivos] = useState<IMotivo[]>([]);
@@ -141,6 +145,13 @@ function FormNewEncargo() {
 
 	return (
 		<div className={style.container}>
+			{hideFormNewInstitucion ? null : (
+				<FormNewInstitucion
+					setHideFormInstitucion={setHideFormNewInstitucion}
+					setLstInstituciones={setLstInstituciones}
+				></FormNewInstitucion>
+			)}
+
 			<form
 				className={style.form}
 				onSubmit={handleSubmit}
@@ -159,6 +170,15 @@ function FormNewEncargo() {
 					required
 					onChange={handleChange}
 				/>
+				<br />
+
+				<label htmlFor="descripcionEncargo">Descripción</label>
+				<textarea
+					onChange={handleChange}
+					name="descripcionEncargo"
+					required
+					placeholder="Escriba una descripcion del encargo"
+				></textarea>
 				<br />
 				<label htmlFor="institucion">Institución </label>
 				<select
@@ -183,8 +203,45 @@ function FormNewEncargo() {
 							</option>
 						);
 					})}
-					<option value="">Agregar</option>
 				</select>
+				<div className={style.agregarForm}>
+					<p>
+						Si no existe la institución que desea ingresar, puede agregar una
+						nueva
+					</p>
+					<button
+						onClick={() => setHideFormNewInstitucion(false)}
+						type="button"
+					>
+						➕
+					</button>
+				</div>
+				<br />
+
+				<label htmlFor="Motivo">Motivo</label>
+				<select
+					name="idMotivo"
+					onChange={handleChange}
+					defaultValue={"Default"}
+				>
+					<option
+						disabled
+						value={"Default"}
+					>
+						Seleccione un Motivo del encargo
+					</option>
+					{lstMotivos.map((i) => {
+						return (
+							<option
+								key={i.idMotivo}
+								value={i.idMotivo}
+							>
+								{i.nombreMotivo}
+							</option>
+						);
+					})}
+				</select>
+
 				<br />
 
 				<label htmlFor="Tipo">Tipo </label>
@@ -213,31 +270,6 @@ function FormNewEncargo() {
 				</select>
 				<br />
 
-				<label htmlFor="Motivo">Motivo</label>
-				<select
-					name="idMotivo"
-					onChange={handleChange}
-					defaultValue={"Default"}
-				>
-					<option
-						disabled
-						value={"Default"}
-					>
-						Seleccione un Motivo del encargo
-					</option>
-					{lstMotivos.map((i) => {
-						return (
-							<option
-								key={i.idMotivo}
-								value={i.idMotivo}
-							>
-								{i.nombreMotivo}
-							</option>
-						);
-					})}
-				</select>
-				<br />
-
 				<label htmlFor="UsuarioResponsable">Usuario Responsable </label>
 				<select
 					onChange={handleChange}
@@ -259,14 +291,7 @@ function FormNewEncargo() {
 					})}
 				</select>
 				<br />
-				<label htmlFor="descripcionEncargo">Descripción</label>
-				<textarea
-					onChange={handleChange}
-					name="descripcionEncargo"
-					required
-					placeholder="Escriba una descripcion del encargo"
-				></textarea>
-				<br />
+
 				<label htmlFor="EncargosAnexos">Anexos</label>
 				<input
 					type="file"

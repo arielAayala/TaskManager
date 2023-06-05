@@ -39,10 +39,11 @@ function Notas({
 			<h4>{fechaCreacionNota}</h4>
 			<h3>Comentario:</h3>
 			<h4>{comentarioNota}</h4>
-			<h3>Anexos: </h3>
-			<div className={style.notasAnexo}>
-				{notasAnexo
-					? notasAnexo.map((i) => {
+			{notasAnexo ? (
+				<div>
+					<h3>Anexos: </h3>
+					<div className={style.notasAnexo}>
+						{notasAnexo.map((i) => {
 							return (
 								<Anexos
 									key={i.idNotaAnexo}
@@ -50,9 +51,10 @@ function Notas({
 									nombreEncargoAnexo={i.nombreNotaAnexo}
 								></Anexos>
 							);
-					  })
-					: null}
-			</div>
+						})}
+					</div>
+				</div>
+			) : null}
 			<div className={style.header}>
 				<h3>Creador de la nota: </h3>
 				{fotoCreador ? (

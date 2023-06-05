@@ -6,7 +6,8 @@ export default async function updateEncargo(
 	idEstado: string,
 	idTipo: string,
 	idUsuarioResponsable: string,
-	idMotivo: string
+	idMotivo: string,
+	fechaCierreEncargo: boolean = false
 ) {
 	const res = await fetch(
 		`http://localhost/managerBackend/Encargos.php?idEncargo=${idEncargo}`,
@@ -20,6 +21,7 @@ export default async function updateEncargo(
 				idTipo: parseInt(idTipo),
 				idUsuarioResponsable: parseInt(idUsuarioResponsable),
 				idMotivo: parseInt(idMotivo),
+				fechaCierreEncargo: fechaCierreEncargo,
 			}),
 		}
 	);

@@ -34,6 +34,7 @@ function Encargo(props: IEncargo) {
 					ID: {props.idEncargo}
 					{" - "}
 					{props.tituloEncargo ? props.tituloEncargo : "Falta titulo"}
+					{props.idEstado == 4 ? " (Encargo Terminado)" : null}
 				</h3>
 				<div
 					className={style.estado}

@@ -46,10 +46,6 @@ const Estados = [
 		idEstado: 3,
 		nombreEstado: "Demorado",
 	},
-	{
-		idEstado: 4,
-		nombreEstado: "Terminado",
-	},
 ];
 
 const Tipos = [
@@ -104,6 +100,11 @@ function FormUpdateEncargo({
 	const [instituciones, setInstituciones] = useState<IInstitucion[]>([]);
 	const [motivos, setMotivos] = useState<IMotivo[]>([]);
 
+	const [alert, setAlert] = useState({
+		mensaje: "",
+		color: "",
+	});
+
 	useEffect(() => {
 		const fetch = async () => {
 			try {
@@ -121,25 +122,32 @@ function FormUpdateEncargo({
 
 	const handleFormUpdate = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const resData = await updateEncargo(
-			idEncargo,
-			input.tituloEncargo,
-			input.descripcionEncargo,
-			input.idInstitucion,
-			input.idEstado,
-			input.idTipo,
-			idUsuarioResponsable,
-			input.idMotivo
-		);
-		const res = resData;
-		if (res === 200) {
-			console.log("actualizo :)");
-			const [encargoData] = await getEncargoByID(idEncargo);
-			setEncargo(encargoData);
-			const notasData = await getAllNotasByIdEncargo(idEncargo);
-			setNotas(notasData);
-		} else {
+		try {
+			const resData = await updateEncargo(
+				idEncargo,
+				input.tituloEncargo,
+				input.descripcionEncargo,
+				input.idInstitucion,
+				input.idEstado,
+				input.idTipo,
+				idUsuarioResponsable,
+				input.idMotivo
+			);
+			const res = resData;
+			if (res === 200) {
+				console.log("actualizo :)");
+				const [encargoData] = await getEncargoByID(idEncargo);
+				setEncargo(encargoData);
+				const notasData = await getAllNotasByIdEncargo(idEncargo);
+				setNotas(notasData);
+				setAlert({
+					mensaje: "Se cargo correctamente la institución",
+					color: "green",
+				});
+			}
+		} catch (error) {
 			console.log("no actualizo :(");
+			setAlert({ mensaje: "Ocurrio un error", color: "red" });
 		}
 	};
 
@@ -153,6 +161,12 @@ function FormUpdateEncargo({
 				className={style.container}
 				onSubmit={handleFormUpdate}
 			>
+				<div
+					className={style.alert}
+					style={{ background: alert.color }}
+				>
+					{alert.mensaje}
+				</div>
 				<div className={style.header}>
 					<label className={style.titulo}>Actualizar</label>
 					<button onClick={() => setConfiguracion(true)}>Cerrar</button>
