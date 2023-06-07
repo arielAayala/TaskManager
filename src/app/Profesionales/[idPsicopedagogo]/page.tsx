@@ -5,6 +5,7 @@ import React from "react";
 import foto from "../../../../public/perfilDefautl.png";
 import style from "./profesionalesID.module.css";
 import getContacs from "@/services/getContacs";
+import { useContextLogin } from "@/context/contextLogin";
 
 type Params = {
 	params: { idPsicopedagogo: string };

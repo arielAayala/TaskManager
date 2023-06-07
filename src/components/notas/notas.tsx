@@ -61,13 +61,13 @@ function Notas({
 					<img
 						className={style.foto}
 						src={fotoCreador}
-						alt={nombreCreador}
+						alt="imagen"
 						title={nombreCreador}
 					/>
 				) : (
 					<Image
 						src={foto}
-						alt={nombreCreador}
+						alt="imagen"
 						title={nombreCreador}
 						className={style.foto}
 					></Image>
@@ -80,7 +80,7 @@ function Notas({
 					{fotoNuevoResponsable ? (
 						<img
 							src={fotoNuevoResponsable}
-							alt={nombreNuevoResponsable}
+							alt="imagen"
 							title={nombreNuevoResponsable}
 							className={style.foto}
 						/>
@@ -88,7 +88,7 @@ function Notas({
 						<Image
 							src={foto}
 							title={nombreNuevoResponsable}
-							alt={nombreNuevoResponsable}
+							alt="imagen"
 							className={style.foto}
 						></Image>
 					)}

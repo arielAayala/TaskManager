@@ -41,5 +41,10 @@
 	background-color: var(--colorDetalles);
 	border-radius: 5px;
 	border: 1px solid var(--colorPrincipal);
-	margin: 4em 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: max-content;
+	margin: 3em;
 }

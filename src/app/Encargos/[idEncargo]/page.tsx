@@ -267,13 +267,13 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 								{encargo.fotoResponsable ? (
 									<img
 										src={encargo.fotoResponsable}
-										alt={encargo.nombreResponsable}
+										alt="imagen"
 										title={encargo.nombreResponsable}
 									></img>
 								) : (
 									<Image
 										src={foto}
-										alt={encargo.nombreResponsable}
+										alt="imagen"
 										title={encargo.nombreResponsable}
 									></Image>
 								)}
@@ -286,13 +286,13 @@ export default function EncargoID({ params: { idEncargo } }: Params) {
 								{encargo.fotoCreador ? (
 									<img
 										src={encargo.fotoCreador}
-										alt={encargo.nombreCreador}
+										alt="imagen"
 										title={encargo.nombreCreador}
 									></img>
 								) : (
 									<Image
 										src={foto}
-										alt={encargo.nombreCreador}
+										alt="imagen"
 										title={encargo.nombreCreador}
 									></Image>
 								)}

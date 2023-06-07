@@ -54,7 +54,6 @@ function FormNewEncargo() {
 	});
 
 	const [hideFormNewInstitucion, setHideFormNewInstitucion] = useState(true);
-	const [hideFormNewMotivo, setHideFormNewMotivo] = useState(true);
 
 	const [lstInstituciones, setLstInstituciones] = useState<IInstitucion[]>([]);
 	const [lstMotivos, setLstMotivos] = useState<IMotivo[]>([]);

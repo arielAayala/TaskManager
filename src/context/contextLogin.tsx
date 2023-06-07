@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 import { IUsuario } from "@/Types/IUsuario";
 
 const ContextLogin = createContext<IUsuario>({

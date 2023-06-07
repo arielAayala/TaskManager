@@ -33,19 +33,21 @@ function Encargos() {
 		getData();
 	}, []);
 
-	if (idUsuario === -1) {
+	if (idUsuario < 1) {
 		redirect("/login");
 	} else {
 		return (
 			<div className={style.container}>
 				<div className={style.header}>
 					<h1> Encargos </h1>
-					<Link
-						className={style.btnAgregar}
-						href={"/NuevoEncargo"}
-					>
-						Agregar Encargo
-					</Link>
+					{idUsuario == 1 ? null : (
+						<Link
+							className={style.btnAgregar}
+							href={"/NuevoEncargo"}
+						>
+							Agregar Encargo
+						</Link>
+					)}
 				</div>
 
 				<ButtonFilter
